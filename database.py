@@ -20,3 +20,12 @@ def initialize_database():
     track_name TEXT NOT NULL
     )
     ''')
+
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS Timetrack_Operations (
+        id INTEGER PRIMARY KEY,
+        owner TEXT NOT NULL,
+        track_name TEXT NOT NULL,
+        date TEXT NOT NULL,
+        amount_of_time INTEGER,
+        occupation TEXT NOT NULL)''')
