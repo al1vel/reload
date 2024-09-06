@@ -11,13 +11,13 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>TRACKER</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
     <string notr="true">background-color: rgb(30, 30, 30);</string>
    </property>
-   <widget class="QFrame" name="frame">
+   <widget class="QFrame" name="frameToday">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -37,7 +37,7 @@ border: 1px solid rgb(255, 255, 255);</string>
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="labelToday">
      <property name="geometry">
       <rect>
        <x>75</x>
@@ -58,7 +58,7 @@ font: 57 25pt &quot;Futura PT Demi&quot;;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="clockIcon">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -80,7 +80,7 @@ font: 57 25pt &quot;Futura PT Demi&quot;;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="label_3">
+    <widget class="QLabel" name="todayWorkTime">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -98,7 +98,7 @@ font: 25 16pt &quot;Futura PT Light&quot;;</string>
       <string>2 h 37 min</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_4">
+    <widget class="QLabel" name="progressIcon">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -120,7 +120,7 @@ font: 25 16pt &quot;Futura PT Light&quot;;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="label_5">
+    <widget class="QLabel" name="todayProgress">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -138,7 +138,7 @@ font: 25 16pt &quot;Futura PT Light&quot;;</string>
       <string>76%</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_6">
+    <widget class="QLabel" name="finishIcon">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -160,7 +160,7 @@ font: 25 16pt &quot;Futura PT Light&quot;;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="label_7">
+    <widget class="QLabel" name="todayFinishTime">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -178,7 +178,7 @@ font: 25 16pt &quot;Futura PT Light&quot;;</string>
       <string>0 h 23 min</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="buttonADD">
      <property name="geometry">
       <rect>
        <x>15</x>
@@ -216,7 +216,7 @@ color: white;
       <string>ADD</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QPushButton" name="buttonSTARTTIMER">
      <property name="geometry">
       <rect>
        <x>145</x>
