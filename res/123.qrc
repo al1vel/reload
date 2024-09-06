@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>goal.svg</file>
+    <file>incomplete31.svg</file>
+    <file>schedule32 (2).svg</file>
+    <file>schedule32.svg</file>
+    <file>schedule30.svg</file>
+    <file>schedule35.svg</file>
+    <file>bolt30.svg</file>
+  </qresource>
+</RCC>

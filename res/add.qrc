@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>schedule35.svg</file>
+  </qresource>
+</RCC>
