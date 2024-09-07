@@ -9,8 +9,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 from smallUI import Ui_MainWindow
 from addTimeUI import Ui_DialogAddTime
 
-connection = sqlite3.connect('my_db.db', check_same_thread=False)
-cursor = connection.cursor()
+EVERYDAY_GOAL = 200
 
 
 class TimeTracker(QMainWindow):
@@ -46,8 +45,30 @@ class TimeTracker(QMainWindow):
         print(amount_of_time)
 
         smallDB.add_time_to_db(date, amount_of_time, comment)
-        smallDB.get_all_regs()
+        self.update_today_info()
         self.new_window.close()
+
+    def update_today_info(self):
+        date = datetime.date.today().strftime("%d-%m-%Y")
+        today_regs = smallDB.get_regs_for_date(date)
+        print(today_regs)
+
+        work_time = 0
+        for reg in today_regs:
+            work_time += reg[2]
+        print(work_time)
+        work_time_str = f'{work_time // 60} h {work_time % 60} min'
+
+        goal_time = EVERYDAY_GOAL - work_time
+        if goal_time < 0:
+            goal_time = 0
+        goal_time_str = f'{goal_time // 60} h {goal_time % 60} min'
+
+        percent_str = f'{round(((work_time / EVERYDAY_GOAL) * 100), 1)} %'
+
+        self.ui.todayWorkTime.setText(work_time_str)
+        self.ui.todayFinishTime.setText(goal_time_str)
+        self.ui.todayProgress.setText(percent_str)
 
 
 if __name__ == "__main__":
@@ -56,4 +77,5 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = TimeTracker()
     window.show()
+    window.update_today_info()
     sys.exit(app.exec_())

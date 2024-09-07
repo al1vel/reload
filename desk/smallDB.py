@@ -31,3 +31,11 @@ def get_all_regs():
 
     connection.commit()
     connection.close()
+
+
+def get_regs_for_date(date):
+    connection = sqlite3.connect('my_db.db', check_same_thread=False)
+    cursor = connection.cursor()
+    cursor.execute(f'SELECT * FROM Operations WHERE date = "{date}"')
+    result = cursor.fetchall()
+    return result
