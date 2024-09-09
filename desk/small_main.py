@@ -3,13 +3,14 @@ import datetime
 import smallDB
 import sqlite3
 
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
 from smallUI import Ui_MainWindow
 from addTimeUI import Ui_DialogAddTime
 
 EVERYDAY_GOAL = 200
+START_TIME = "hui"
 
 
 class TimeTracker(QMainWindow):
@@ -19,6 +20,11 @@ class TimeTracker(QMainWindow):
         self.ui.setupUi(self)
 
         self.ui.buttonADD.clicked.connect(self.open_addtime_menu)
+        self.ui.buttonSTARTTIMER.clicked.connect(self.click_timer_button)
+
+        self.timer = QtCore.QTimer(self)
+        self.timer.setInterval(1000)
+        self.timer.timeout.connect(self.display_time)
 
     def open_addtime_menu(self):
         self.new_window = QtWidgets.QDialog()
@@ -69,6 +75,19 @@ class TimeTracker(QMainWindow):
         self.ui.todayWorkTime.setText(work_time_str)
         self.ui.todayFinishTime.setText(goal_time_str)
         self.ui.todayProgress.setText(percent_str)
+
+    def click_timer_button(self):
+        if self.ui.buttonSTARTTIMER.text() == "START TIMER":
+            self.timer.start()
+            START_TIME = QtCore.QDateTime.currentDateTime().toString('hh:mm:ss')
+            print(START_TIME)
+        else:
+            self.timer.stop()
+
+    def display_time(self):
+        cur_time = QtCore.QDateTime.currentDateTime().toString('hh:mm:ss')
+        print(START_TIME)
+        self.ui.buttonSTARTTIMER.setText(cur_time)
 
 
 if __name__ == "__main__":
