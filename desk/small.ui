@@ -74,7 +74,7 @@ font: 57 25pt &quot;Futura PT Demi&quot;;</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../res/123.qrc">:/icons/schedule30.svg</pixmap>
+      <pixmap resource="../res/123.qrc">:/icons/anotgher_clock30.png</pixmap>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -114,7 +114,7 @@ font: 25 16pt &quot;Futura PT Light&quot;;</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../res/123.qrc">:/icons/incomplete31.svg</pixmap>
+      <pixmap resource="../res/123.qrc">:/icons/percent30.png</pixmap>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -154,7 +154,7 @@ font: 25 16pt &quot;Futura PT Light&quot;;</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../res/123.qrc">:/icons/goal.svg</pixmap>
+      <pixmap resource="../res/123.qrc">:/icons/finish.png</pixmap>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -252,6 +252,398 @@ color: white;
      </property>
      <property name="text">
       <string>START TIMER</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>195</x>
+       <y>20</y>
+       <width>31</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+border: none;
+}
+
+QPushButton:hover {
+border: 1px solid rgb(255, 255, 255);
+background-color: rgb(70, 70, 70);
+border-radius: 9px;
+}
+
+QPushButton:pressed {
+border: 2px solid rgb(255, 255, 255);
+background-color: rgb(70, 70, 70);
+border-radius: 9px;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../res/123.qrc">
+       <normaloff>:/icons/arrow_right.png</normaloff>:/icons/arrow_right.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>50</width>
+       <height>50</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="geometry">
+      <rect>
+       <x>52</x>
+       <y>20</y>
+       <width>31</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+border: none;
+}
+
+QPushButton:hover {
+border: 1px solid rgb(255, 255, 255);
+background-color: rgb(70, 70, 70);
+border-radius: 9px;
+}
+
+QPushButton:pressed {
+border: 2px solid rgb(255, 255, 255);
+background-color: rgb(70, 70, 70);
+border-radius: 9px;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../res/123.qrc">
+       <normaloff>:/icons/arrow_left.png</normaloff>:/icons/arrow_left.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>50</width>
+       <height>50</height>
+      </size>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frameToday_2">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>40</y>
+      <width>431</width>
+      <height>291</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(60, 60, 60);
+border-radius: 15px;
+border: 1px solid rgb(255, 255, 255);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="labelToday_2">
+     <property name="geometry">
+      <rect>
+       <x>75</x>
+       <y>10</y>
+       <width>291</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: none;
+color: white;
+font: 57 25pt &quot;Futura PT Demi&quot;;</string>
+     </property>
+     <property name="text">
+      <string>THIS WEEK</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="clockIcon_2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>80</y>
+       <width>31</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: none;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../res/123.qrc">:/icons/avg30.png</pixmap>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="todayWorkTime_2">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>80</y>
+       <width>71</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: none;
+color: white;
+font: 25 16pt &quot;Futura PT Light&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Average:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="progressIcon_2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>120</y>
+       <width>31</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: none;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../res/123.qrc">:/icons/clock30.png</pixmap>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="todayProgress_2">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>122</y>
+       <width>61</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: none;
+color: white;
+font: 25 16pt &quot;Futura PT Light&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Overall:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="finishIcon_2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>160</y>
+       <width>31</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: none;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../res/123.qrc">:/icons/percent30.png</pixmap>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="todayFinishTime_2">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>161</y>
+       <width>61</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: none;
+color: white;
+font: 25 16pt &quot;Futura PT Light&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Percent:</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_3">
+     <property name="geometry">
+      <rect>
+       <x>303</x>
+       <y>20</y>
+       <width>31</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+border: none;
+}
+
+QPushButton:hover {
+border: 1px solid rgb(255, 255, 255);
+background-color: rgb(70, 70, 70);
+border-radius: 9px;
+}
+
+QPushButton:pressed {
+border: 2px solid rgb(255, 255, 255);
+background-color: rgb(70, 70, 70);
+border-radius: 9px;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../res/123.qrc">
+       <normaloff>:/icons/arrow_right.png</normaloff>:/icons/arrow_right.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>50</width>
+       <height>50</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_4">
+     <property name="geometry">
+      <rect>
+       <x>103</x>
+       <y>20</y>
+       <width>31</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+border: none;
+}
+
+QPushButton:hover {
+border: 1px solid rgb(255, 255, 255);
+background-color: rgb(70, 70, 70);
+border-radius: 9px;
+}
+
+QPushButton:pressed {
+border: 2px solid rgb(255, 255, 255);
+background-color: rgb(70, 70, 70);
+border-radius: 9px;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../res/123.qrc">
+       <normaloff>:/icons/arrow_left.png</normaloff>:/icons/arrow_left.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>50</width>
+       <height>50</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QLabel" name="todayWorkTime_3">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>80</y>
+       <width>111</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: none;
+color: white;
+font: 25 16pt &quot;Futura PT Light&quot;;</string>
+     </property>
+     <property name="text">
+      <string>3 h 25 min</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="todayProgress_3">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>122</y>
+       <width>111</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: none;
+color: white;
+font: 25 16pt &quot;Futura PT Light&quot;;</string>
+     </property>
+     <property name="text">
+      <string>22 h 43 min</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="todayFinishTime_3">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>161</y>
+       <width>61</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: none;
+color: white;
+font: 25 16pt &quot;Futura PT Light&quot;;</string>
+     </property>
+     <property name="text">
+      <string>78%</string>
+     </property>
+    </widget>
+    <widget class="Line" name="line">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>83</y>
+       <width>2</width>
+       <height>110</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
      </property>
     </widget>
    </widget>

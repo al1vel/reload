@@ -83,13 +83,12 @@ class TimeTracker(QMainWindow):
             self.ui.buttonSTARTTIMER.setText("0:00:00")
             self.timer.start()
             self.START_TIME = QtCore.QDateTime.currentDateTime().toString('yyyy:MM:dd:hh:mm:ss')
-            print(self.START_TIME)
+            # print(self.START_TIME)
         else:
             self.timer.stop()
             self.TIMER_TIME = self.ui.buttonSTARTTIMER.text()
+            self.ui.buttonSTARTTIMER.setText("START TIMER")
             self.open_add_timertime_menu()
-
-
 
     def display_time(self):
         st = self.START_TIME.split(":")
@@ -114,14 +113,31 @@ class TimeTracker(QMainWindow):
         self.ui_timer_add.setupUi(self.window_timer_add)
 
         self.ui_timer_add.timeHours.setText(hrs)
-        self.ui_timer_add.timeMinutes.setText(hrs)
+        self.ui_timer_add.timeMinutes.setText(mins)
 
         self.window_timer_add.show()
 
+        self.ui_timer_add.buttonADD.clicked.connect(self.add_time_by_timer)
 
+    def add_time_by_timer(self):
+        date = datetime.date.today().strftime("%d-%m-%Y")
+        print(date)
 
+        hours_cnt = self.ui_timer_add.timeHours.text()
+        print(hours_cnt)
 
-        # self.ui_def_add.buttonADD.clicked.connect(self.add_time)
+        minutes_cnt = self.ui_timer_add.timeMinutes.text()
+        print(minutes_cnt)
+
+        comment = self.ui_timer_add.textEditOccupation.toPlainText()
+        print(comment)
+
+        amount_of_time = int(hours_cnt) * 60 + int(minutes_cnt)
+        print(amount_of_time)
+
+        smallDB.add_time_to_db(date, amount_of_time, comment)
+        self.update_today_info()
+        self.window_timer_add.close()
 
 
 if __name__ == "__main__":

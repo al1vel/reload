@@ -1,6 +1,15 @@
 <RCC>
   <qresource prefix="icons">
+    <file>arrow-up-right-50.png</file>
+    <file>arrow-down-right50.png</file>
+    <file>anotgher_clock30.png</file>
+    <file>arrow_left.png</file>
+    <file>arrow_right.png</file>
+    <file>percent30.png</file>
+    <file>clock30.png</file>
+    <file>avg30.png</file>
     <file>goal.svg</file>
+    <file>finish.png</file>
     <file>incomplete31.svg</file>
     <file>schedule32 (2).svg</file>
     <file>schedule32.svg</file>
