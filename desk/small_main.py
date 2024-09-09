@@ -1,16 +1,16 @@
 import sys
 import datetime
 import smallDB
-import sqlite3
+# from datetime import datetime
 
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
 from smallUI import Ui_MainWindow
 from addTimeUI import Ui_DialogAddTime
+from addTimeByTimerUI import Ui_DialogAddByTimer
 
 EVERYDAY_GOAL = 200
-START_TIME = "hui"
 
 
 class TimeTracker(QMainWindow):
@@ -25,26 +25,28 @@ class TimeTracker(QMainWindow):
         self.timer = QtCore.QTimer(self)
         self.timer.setInterval(1000)
         self.timer.timeout.connect(self.display_time)
+        self.START_TIME = "hui"
+        self.TIMER_TIME = ""
 
     def open_addtime_menu(self):
-        self.new_window = QtWidgets.QDialog()
-        self.ui_window = Ui_DialogAddTime()
-        self.ui_window.setupUi(self.new_window)
-        self.new_window.show()
+        self.window_default_add = QtWidgets.QDialog()
+        self.ui_def_add = Ui_DialogAddTime()
+        self.ui_def_add.setupUi(self.window_default_add)
+        self.window_default_add.show()
 
-        self.ui_window.buttonADD.clicked.connect(self.add_time)
+        self.ui_def_add.buttonADD.clicked.connect(self.add_time)
 
     def add_time(self):
         date = datetime.date.today().strftime("%d-%m-%Y")
         print(date)
 
-        hours_cnt = self.ui_window.lineEditHours.text()
+        hours_cnt = self.ui_def_add.lineEditHours.text()
         print(hours_cnt)
 
-        minutes_cnt = self.ui_window.lineEditMinutes.text()
+        minutes_cnt = self.ui_def_add.lineEditMinutes.text()
         print(minutes_cnt)
 
-        comment = self.ui_window.textEditOccupation.toPlainText()
+        comment = self.ui_def_add.textEditOccupation.toPlainText()
         print(comment)
 
         amount_of_time = int(hours_cnt) * 60 + int(minutes_cnt)
@@ -52,7 +54,7 @@ class TimeTracker(QMainWindow):
 
         smallDB.add_time_to_db(date, amount_of_time, comment)
         self.update_today_info()
-        self.new_window.close()
+        self.window_default_add.close()
 
     def update_today_info(self):
         date = datetime.date.today().strftime("%d-%m-%Y")
@@ -78,16 +80,48 @@ class TimeTracker(QMainWindow):
 
     def click_timer_button(self):
         if self.ui.buttonSTARTTIMER.text() == "START TIMER":
+            self.ui.buttonSTARTTIMER.setText("0:00:00")
             self.timer.start()
-            START_TIME = QtCore.QDateTime.currentDateTime().toString('hh:mm:ss')
-            print(START_TIME)
+            self.START_TIME = QtCore.QDateTime.currentDateTime().toString('yyyy:MM:dd:hh:mm:ss')
+            print(self.START_TIME)
         else:
             self.timer.stop()
+            self.TIMER_TIME = self.ui.buttonSTARTTIMER.text()
+            self.open_add_timertime_menu()
+
+
 
     def display_time(self):
-        cur_time = QtCore.QDateTime.currentDateTime().toString('hh:mm:ss')
-        print(START_TIME)
-        self.ui.buttonSTARTTIMER.setText(cur_time)
+        st = self.START_TIME.split(":")
+        time_start = datetime.datetime(int(st[0]), int(st[1]), int(st[2]), int(st[3]), int(st[4]), int(st[5]))
+
+        cur_time = QtCore.QDateTime.currentDateTime().toString('yyyy:MM:dd:hh:mm:ss')
+        fn = cur_time.split(":")
+        time_now = datetime.datetime(int(fn[0]), int(fn[1]), int(fn[2]), int(fn[3]), int(fn[4]), int(fn[5]))
+
+        diff = time_now - time_start
+        self.ui.buttonSTARTTIMER.setText(str(diff))
+
+    def open_add_timertime_menu(self):
+        hrs = str(self.TIMER_TIME).split(":")[0]
+        mins = str(self.TIMER_TIME).split(":")[1]
+        if mins == "00":
+            mins = "01"
+        print(hrs, mins)
+
+        self.window_timer_add = QtWidgets.QDialog()
+        self.ui_timer_add = Ui_DialogAddByTimer()
+        self.ui_timer_add.setupUi(self.window_timer_add)
+
+        self.ui_timer_add.timeHours.setText(hrs)
+        self.ui_timer_add.timeMinutes.setText(hrs)
+
+        self.window_timer_add.show()
+
+
+
+
+        # self.ui_def_add.buttonADD.clicked.connect(self.add_time)
 
 
 if __name__ == "__main__":
