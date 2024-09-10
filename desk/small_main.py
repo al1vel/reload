@@ -21,12 +21,19 @@ class TimeTracker(QMainWindow):
 
         self.ui.buttonADD.clicked.connect(self.open_addtime_menu)
         self.ui.buttonSTARTTIMER.clicked.connect(self.click_timer_button)
+        self.ui.buttonPrevDay.clicked.connect(self.open_prev_day)
+        self.ui.buttonNextDay.clicked.connect(self.open_next_day)
 
         self.timer = QtCore.QTimer(self)
         self.timer.setInterval(1000)
         self.timer.timeout.connect(self.display_time)
+
         self.START_TIME = "hui"
         self.TIMER_TIME = ""
+
+        self.TODAY_DATE = datetime.datetime.now()
+        self.DISPLAYED_DATE = self.TODAY_DATE
+        self.DISPLAYED_WEEK = self.TODAY_DATE
 
     def open_addtime_menu(self):
         self.window_default_add = QtWidgets.QDialog()
@@ -37,9 +44,7 @@ class TimeTracker(QMainWindow):
         self.ui_def_add.buttonADD.clicked.connect(self.add_time)
 
     def add_time(self):
-        date = datetime.date.today().strftime("%d-%m-%Y")
-        print(date)
-
+        date = self.DISPLAYED_DATE.strftime("%d-%m-%Y")
         hours_cnt = self.ui_def_add.lineEditHours.text()
         print(hours_cnt)
 
@@ -57,14 +62,13 @@ class TimeTracker(QMainWindow):
         self.window_default_add.close()
 
     def update_today_info(self):
-        date = datetime.date.today().strftime("%d-%m-%Y")
+        date = self.DISPLAYED_DATE.strftime("%d-%m-%Y")
         today_regs = smallDB.get_regs_for_date(date)
         print(today_regs)
 
         work_time = 0
         for reg in today_regs:
             work_time += reg[2]
-        print(work_time)
         work_time_str = f'{work_time // 60} h {work_time % 60} min'
 
         goal_time = EVERYDAY_GOAL - work_time
@@ -83,7 +87,6 @@ class TimeTracker(QMainWindow):
             self.ui.buttonSTARTTIMER.setText("0:00:00")
             self.timer.start()
             self.START_TIME = QtCore.QDateTime.currentDateTime().toString('yyyy:MM:dd:hh:mm:ss')
-            # print(self.START_TIME)
         else:
             self.timer.stop()
             self.TIMER_TIME = self.ui.buttonSTARTTIMER.text()
@@ -138,6 +141,31 @@ class TimeTracker(QMainWindow):
         smallDB.add_time_to_db(date, amount_of_time, comment)
         self.update_today_info()
         self.window_timer_add.close()
+
+    def open_prev_day(self):
+        self.DISPLAYED_DATE = self.DISPLAYED_DATE - datetime.timedelta(days=1)
+        if self.DISPLAYED_DATE == self.TODAY_DATE:
+            self.ui.labelToday.setText("TODAY")
+        else:
+            date = self.DISPLAYED_DATE.strftime("%d-%m")
+            self.ui.labelToday.setText(date)
+        self.update_today_info()
+
+    def open_next_day(self):
+        self.DISPLAYED_DATE = self.DISPLAYED_DATE + datetime.timedelta(days=1)
+        if self.DISPLAYED_DATE == self.TODAY_DATE:
+            self.ui.labelToday.setText("TODAY")
+        else:
+            date = self.DISPLAYED_DATE.strftime("%d-%m")
+            self.ui.labelToday.setText(date)
+        self.update_today_info()
+
+    def update_week_info(self):
+        date = self.DISPLAYED_DATE.strftime("%d-%m-%Y")
+
+    def open_prev_week(self):
+        day_num = self.DISPLAYED_WEEK.weekday()
+        self.DISPLAYED_WEEK = self.DISPLAYED_WEEK - datetime.timedelta(days=7)
 
 
 if __name__ == "__main__":

@@ -39,3 +39,15 @@ def get_regs_for_date(date):
     cursor.execute(f'SELECT * FROM Operations WHERE date = "{date}"')
     result = cursor.fetchall()
     return result
+
+
+def week_info(date):
+    connection = sqlite3.connect('my_db.db', check_same_thread=False)
+    cursor = connection.cursor()
+
+    cursor.execute(f'SELECT * FROM Operations WHERE date = "{date}"')
+    week = cursor.fetchall()
+
+    overall_work_time = 0
+    full_days_cnt = 0
+
