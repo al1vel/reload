@@ -347,7 +347,8 @@ class Ui_MainWindow(object):
         self.labelGrowth.setText(_translate("MainWindow", "Growth:"))
         self.WeekFullDays.setText(_translate("MainWindow", "6 days"))
         self.WeekGrowth.setText(_translate("MainWindow", "11%"))
-# import 123_rc
+
+import resource
 
 
 if __name__ == "__main__":

@@ -1,8 +1,0 @@
-<RCC>
-  <qresource prefix="icons">
-    <file>bolt30.svg</file>
-    <file>bolt45.svg</file>
-    <file>hourglass45.svg</file>
-    <file>hourglass.svg</file>
-  </qresource>
-</RCC>
