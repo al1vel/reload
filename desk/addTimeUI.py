@@ -64,7 +64,8 @@ class Ui_DialogAddTime(object):
         self.iconClock.setGeometry(QtCore.QRect(20, 20, 41, 41))
         self.iconClock.setStyleSheet("border: none;")
         self.iconClock.setText("")
-        self.iconClock.setPixmap(QtGui.QPixmap(":/icons/schedule35.svg"))
+        self.iconClock.setPixmap(QtGui.QPixmap(":/icons/clock-45.png"))
+        self.iconClock.setAlignment(QtCore.Qt.AlignCenter)
         self.iconClock.setObjectName("iconClock")
         self.textEditOccupation = QtWidgets.QTextEdit(DialogAddTime)
         self.textEditOccupation.setGeometry(QtCore.QRect(20, 190, 270, 61))
@@ -126,7 +127,8 @@ class Ui_DialogAddTime(object):
 "</style></head><body style=\" font-family:\'Futura PT Light\'; font-size:18pt; font-weight:24; font-style:normal;\">\n"
 "<p align=\"justify\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.buttonADD.setText(_translate("DialogAddTime", "ADD"))
-# import add_rc
+
+import addTime_res
 
 
 if __name__ == "__main__":

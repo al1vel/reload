@@ -94,7 +94,7 @@ color: white;</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="../res/add.qrc">:/icons/schedule35.svg</pixmap>
+     <pixmap resource="../res/addTime.qrc">:/icons/clock-45.png</pixmap>
     </property>
    </widget>
    <widget class="QLabel" name="timeHours">
@@ -246,8 +246,7 @@ color: white;
   </widget>
  </widget>
  <resources>
-  <include location="../res/add.qrc"/>
-  <include location="../../../../../Program Files (x86)/res/add.qrc"/>
+  <include location="../res/addTime.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -42,7 +42,7 @@ class Ui_DialogAddByTimer(object):
         self.iconClock.setGeometry(QtCore.QRect(20, 20, 41, 41))
         self.iconClock.setStyleSheet("border: none;")
         self.iconClock.setText("")
-        self.iconClock.setPixmap(QtGui.QPixmap(":/icons/schedule35.svg"))
+        self.iconClock.setPixmap(QtGui.QPixmap(":/icons/clock-45.png"))
         self.iconClock.setObjectName("iconClock")
         self.timeHours = QtWidgets.QLabel(self.frameTimeInfo)
         self.timeHours.setGeometry(QtCore.QRect(80, 26, 41, 31))
@@ -124,7 +124,8 @@ class Ui_DialogAddByTimer(object):
 "</style></head><body style=\" font-family:\'Futura PT Light\'; font-size:18pt; font-weight:24; font-style:normal;\">\n"
 "<p align=\"justify\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.buttonADD.setText(_translate("DialogAddByTimer", "ADD"))
-# import add_rc
+
+import addTime_res
 
 
 if __name__ == "__main__":
