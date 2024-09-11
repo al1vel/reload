@@ -1,4 +1,5 @@
 import sqlite3
+import datetime
 
 
 def db_init():
@@ -41,13 +42,41 @@ def get_regs_for_date(date):
     return result
 
 
-def week_info(date):
+def day_info(date, goal):
     connection = sqlite3.connect('my_db.db', check_same_thread=False)
     cursor = connection.cursor()
-
     cursor.execute(f'SELECT * FROM Operations WHERE date = "{date}"')
-    week = cursor.fetchall()
+    day_data = cursor.fetchall()
 
+    day_worktime = 0
+
+    for reg in day_data:
+        day_worktime += reg[2]
+    day_goaltime = goal - day_worktime
+    if day_goaltime < 0:
+        day_goaltime = 0
+    day_percent = round(((day_worktime / goal) * 100), 1)
+
+    answer = [day_worktime, day_goaltime, day_percent]
+    return answer
+
+
+def week_info(date, goal):
     overall_work_time = 0
     full_days_cnt = 0
+    day_num = date.weekday()
+    week_start = date - datetime.timedelta(days=day_num)
+    day = week_start
 
+    for i in range(7):
+        day_str = day.strftime("%d-%m-%Y")
+
+        day_data = day_info(day_str, goal)
+        overall_work_time += day_data[0]
+        if day_data[2] >= 100:
+            full_days_cnt += 1
+
+        day = day + datetime.timedelta(days=1)
+
+    answer = [overall_work_time, full_days_cnt]
+    return answer

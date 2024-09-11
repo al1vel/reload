@@ -1,7 +1,6 @@
 import sys
 import datetime
 import smallDB
-# from datetime import datetime
 
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow
@@ -9,8 +8,6 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 from smallUI import Ui_MainWindow
 from addTimeUI import Ui_DialogAddTime
 from addTimeByTimerUI import Ui_DialogAddByTimer
-
-EVERYDAY_GOAL = 200
 
 
 class TimeTracker(QMainWindow):
@@ -23,6 +20,8 @@ class TimeTracker(QMainWindow):
         self.ui.buttonSTARTTIMER.clicked.connect(self.click_timer_button)
         self.ui.buttonPrevDay.clicked.connect(self.open_prev_day)
         self.ui.buttonNextDay.clicked.connect(self.open_next_day)
+        self.ui.buttonPrevWeek.clicked.connect(self.open_prev_week)
+        self.ui.buttonNextWeek.clicked.connect(self.open_next_week)
 
         self.timer = QtCore.QTimer(self)
         self.timer.setInterval(1000)
@@ -31,9 +30,12 @@ class TimeTracker(QMainWindow):
         self.START_TIME = "hui"
         self.TIMER_TIME = ""
 
-        self.TODAY_DATE = datetime.datetime.now()
+        self.EVERYDAY_GOAL = 200
+
+        self.TODAY_DATE = datetime.date.today()
         self.DISPLAYED_DATE = self.TODAY_DATE
         self.DISPLAYED_WEEK = self.TODAY_DATE
+        self.DATE_WHEN_OPEN_APP = self.TODAY_DATE
 
     def open_addtime_menu(self):
         self.window_default_add = QtWidgets.QDialog()
@@ -59,24 +61,29 @@ class TimeTracker(QMainWindow):
 
         smallDB.add_time_to_db(date, amount_of_time, comment)
         self.update_today_info()
+        self.update_week_info()
         self.window_default_add.close()
 
     def update_today_info(self):
         date = self.DISPLAYED_DATE.strftime("%d-%m-%Y")
-        today_regs = smallDB.get_regs_for_date(date)
-        print(today_regs)
-
-        work_time = 0
-        for reg in today_regs:
-            work_time += reg[2]
-        work_time_str = f'{work_time // 60} h {work_time % 60} min'
-
-        goal_time = EVERYDAY_GOAL - work_time
-        if goal_time < 0:
-            goal_time = 0
-        goal_time_str = f'{goal_time // 60} h {goal_time % 60} min'
-
-        percent_str = f'{round(((work_time / EVERYDAY_GOAL) * 100), 1)} %'
+        # today_regs = smallDB.get_regs_for_date(date)
+        # print(today_regs)
+        #
+        # work_time = 0
+        # for reg in today_regs:
+        #     work_time += reg[2]
+        # work_time_str = f'{work_time // 60} h {work_time % 60} min'
+        #
+        # goal_time = self.EVERYDAY_GOAL - work_time
+        # if goal_time < 0:
+        #     goal_time = 0
+        # goal_time_str = f'{goal_time // 60} h {goal_time % 60} min'
+        #
+        # percent_str = f'{round(((work_time / self.EVERYDAY_GOAL) * 100), 1)} %'
+        data = smallDB.day_info(date, self.EVERYDAY_GOAL)
+        work_time_str = f'{data[0] // 60} h {data[0] % 60} min'
+        goal_time_str = f'{data[1] // 60} h {data[1] % 60} min'
+        percent_str = f'{data[2]}%'
 
         self.ui.todayWorkTime.setText(work_time_str)
         self.ui.todayFinishTime.setText(goal_time_str)
@@ -140,6 +147,7 @@ class TimeTracker(QMainWindow):
 
         smallDB.add_time_to_db(date, amount_of_time, comment)
         self.update_today_info()
+        self.update_week_info()
         self.window_timer_add.close()
 
     def open_prev_day(self):
@@ -161,11 +169,55 @@ class TimeTracker(QMainWindow):
         self.update_today_info()
 
     def update_week_info(self):
-        date = self.DISPLAYED_DATE.strftime("%d-%m-%Y")
+        date = self.DISPLAYED_WEEK
+        date_prev = date - datetime.timedelta(days=7)
+
+        res = smallDB.week_info(date, self.EVERYDAY_GOAL)
+        res_prev = smallDB.week_info(date_prev, self.EVERYDAY_GOAL)
+
+        worktime_str = f'{res[0] // 60} h {res[0] % 60} min'
+        avg_minutes = res[0] / 7
+        avg_str = f'{str(avg_minutes // 60).split(".")[0]} h {round((avg_minutes % 60), 1)} min'
+        percent_str = f'{round((((res[0]) / (self.EVERYDAY_GOAL * 7)) * 100), 1)}%'
+
+        if res_prev[0] == 0:
+            self.ui.WeekGrowth.setText(f'Nothing to compare')
+        else:
+            cur_percent = (res[0] * 100 / res_prev[0])
+            growth = cur_percent - 100
+            print(growth)
+            self.ui.WeekGrowth.setText(f'{round(growth, 1)}%')
+
+        self.ui.WeekOverall.setText(worktime_str)
+        self.ui.WeekAverage.setText(avg_str)
+        self.ui.WeekPercent.setText(percent_str)
+        self.ui.WeekFullDays.setText(f'{res[1]}')
 
     def open_prev_week(self):
         day_num = self.DISPLAYED_WEEK.weekday()
         self.DISPLAYED_WEEK = self.DISPLAYED_WEEK - datetime.timedelta(days=7)
+        week_start = (self.DISPLAYED_WEEK - datetime.timedelta(days=day_num)).strftime("%d-%m")
+        week_end = (self.DISPLAYED_WEEK + datetime.timedelta(days=(6 - day_num))).strftime("%d-%m")
+
+        if self.DISPLAYED_WEEK == self.DATE_WHEN_OPEN_APP:
+            self.ui.labelThisWeek.setText("THIS WEEK")
+        else:
+            s = f'{week_start}  {week_end}'
+            self.ui.labelThisWeek.setText(s)
+        self.update_week_info()
+
+    def open_next_week(self):
+        day_num = self.DISPLAYED_WEEK.weekday()
+        self.DISPLAYED_WEEK = self.DISPLAYED_WEEK + datetime.timedelta(days=7)
+        week_start = (self.DISPLAYED_WEEK - datetime.timedelta(days=day_num)).strftime("%d-%m")
+        week_end = (self.DISPLAYED_WEEK + datetime.timedelta(days=(6 - day_num))).strftime("%d-%m")
+
+        if self.DISPLAYED_WEEK == self.DATE_WHEN_OPEN_APP:
+            self.ui.labelThisWeek.setText("THIS WEEK")
+        else:
+            s = f'{week_start}  {week_end}'
+            self.ui.labelThisWeek.setText(s)
+        self.update_week_info()
 
 
 if __name__ == "__main__":
@@ -175,4 +227,5 @@ if __name__ == "__main__":
     window = TimeTracker()
     window.show()
     window.update_today_info()
+    window.update_week_info()
     sys.exit(app.exec_())
