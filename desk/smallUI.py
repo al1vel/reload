@@ -348,7 +348,7 @@ class Ui_MainWindow(object):
         self.WeekFullDays.setText(_translate("MainWindow", "6 days"))
         self.WeekGrowth.setText(_translate("MainWindow", "11%"))
 
-import resource
+import mainPage_res
 
 
 if __name__ == "__main__":
