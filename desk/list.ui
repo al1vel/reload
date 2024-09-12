@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DialogList</class>
+ <widget class="QDialog" name="DialogList">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>LIST</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(30, 30, 30);</string>
+  </property>
+  <widget class="QTableView" name="tableView">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>110</y>
+     <width>361</width>
+     <height>192</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QTableView {
+background-color: rgb(60, 60, 60);
+border: 1px solid rgb(255,255,255);
+border-bottom-right-radius: 15px;
+border-bottom-left-radius: 15px;
+}
+
+QTableView::section{
+background-color: rgb(60, 60, 60);
+color:white;
+border: 1px solid rgb(255,255,255);
+height:50px;
+font: 25 14pt &quot;Futura PT Light&quot;;
+}
+
+QTableView::item{
+border-style: none;
+border-bottom: rgb(255,255,255);
+}
+
+QTableView::item::selected {
+border: none;
+
+}</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

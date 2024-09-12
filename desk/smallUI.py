@@ -15,6 +15,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
+        MainWindow.setIconSize(QtCore.QSize(48, 48))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setStyleSheet("background-color: rgb(30, 30, 30);")
         self.centralwidget.setObjectName("centralwidget")
@@ -30,7 +31,7 @@ class Ui_MainWindow(object):
         self.labelToday.setGeometry(QtCore.QRect(75, 10, 131, 51))
         self.labelToday.setStyleSheet("border: none;\n"
 "color: white;\n"
-"font: 57 22pt \"Futura PT Demi\";")
+"font: 57 25pt \"Futura PT Demi\";")
         self.labelToday.setAlignment(QtCore.Qt.AlignCenter)
         self.labelToday.setObjectName("labelToday")
         self.clockIcon = QtWidgets.QLabel(self.frameToday)
@@ -73,7 +74,7 @@ class Ui_MainWindow(object):
 "font: 25 16pt \"Futura PT Light\";")
         self.todayFinishTime.setObjectName("todayFinishTime")
         self.buttonADD = QtWidgets.QPushButton(self.frameToday)
-        self.buttonADD.setGeometry(QtCore.QRect(15, 210, 120, 61))
+        self.buttonADD.setGeometry(QtCore.QRect(15, 210, 61, 61))
         self.buttonADD.setStyleSheet("QPushButton {\n"
 "border: 1px solid rgb(255, 255, 255);\n"
 "background-color: rgb(70, 70, 70);\n"
@@ -97,6 +98,11 @@ class Ui_MainWindow(object):
 "font: 57 12pt \"Futura PT Demi\";\n"
 "color: white;\n"
 "}")
+        self.buttonADD.setText("")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("../res/plus-30.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.buttonADD.setIcon(icon)
+        self.buttonADD.setIconSize(QtCore.QSize(32, 32))
         self.buttonADD.setObjectName("buttonADD")
         self.buttonSTARTTIMER = QtWidgets.QPushButton(self.frameToday)
         self.buttonSTARTTIMER.setGeometry(QtCore.QRect(145, 210, 120, 61))
@@ -142,9 +148,9 @@ class Ui_MainWindow(object):
 "border-radius: 9px;\n"
 "}")
         self.buttonNextDay.setText("")
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/icons/arrow_right.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.buttonNextDay.setIcon(icon)
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap(":/icons/arrow_right.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.buttonNextDay.setIcon(icon1)
         self.buttonNextDay.setIconSize(QtCore.QSize(50, 50))
         self.buttonNextDay.setObjectName("buttonNextDay")
         self.buttonPrevDay = QtWidgets.QPushButton(self.frameToday)
@@ -165,11 +171,42 @@ class Ui_MainWindow(object):
 "border-radius: 9px;\n"
 "}")
         self.buttonPrevDay.setText("")
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/icons/arrow_left.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.buttonPrevDay.setIcon(icon1)
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap(":/icons/arrow_left.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.buttonPrevDay.setIcon(icon2)
         self.buttonPrevDay.setIconSize(QtCore.QSize(50, 50))
         self.buttonPrevDay.setObjectName("buttonPrevDay")
+        self.buttonLIST = QtWidgets.QPushButton(self.frameToday)
+        self.buttonLIST.setGeometry(QtCore.QRect(80, 210, 61, 61))
+        self.buttonLIST.setStyleSheet("QPushButton {\n"
+"border: 1px solid rgb(255, 255, 255);\n"
+"background-color: rgb(70, 70, 70);\n"
+"border-radius: 15px;\n"
+"font: 57 12pt \"Futura PT Demi\";\n"
+"color: white;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"border: 1px solid rgb(255, 255, 255);\n"
+"background-color: rgb(90, 90, 90);\n"
+"border-radius: 15px;\n"
+"font: 57 12pt \"Futura PT Demi\";\n"
+"color: white;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"border: 2px solid rgb(255, 255, 255);\n"
+"background-color: rgb(90, 90, 90);\n"
+"border-radius: 15px;\n"
+"font: 57 12pt \"Futura PT Demi\";\n"
+"color: white;\n"
+"}")
+        self.buttonLIST.setText("")
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap("../res/list-30.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.buttonLIST.setIcon(icon3)
+        self.buttonLIST.setIconSize(QtCore.QSize(32, 32))
+        self.buttonLIST.setObjectName("buttonLIST")
         self.frameWeek = QtWidgets.QFrame(self.centralwidget)
         self.frameWeek.setGeometry(QtCore.QRect(340, 40, 431, 291))
         self.frameWeek.setStyleSheet("background-color: rgb(60, 60, 60);\n"
@@ -182,7 +219,7 @@ class Ui_MainWindow(object):
         self.labelThisWeek.setGeometry(QtCore.QRect(75, 10, 291, 51))
         self.labelThisWeek.setStyleSheet("border: none;\n"
 "color: white;\n"
-"font: 57 22pt \"Futura PT Demi\";")
+"font: 57 25pt \"Futura PT Demi\";")
         self.labelThisWeek.setAlignment(QtCore.Qt.AlignCenter)
         self.labelThisWeek.setObjectName("labelThisWeek")
         self.IconAverage = QtWidgets.QLabel(self.frameWeek)
@@ -242,7 +279,7 @@ class Ui_MainWindow(object):
 "border-radius: 9px;\n"
 "}")
         self.buttonNextWeek.setText("")
-        self.buttonNextWeek.setIcon(icon)
+        self.buttonNextWeek.setIcon(icon1)
         self.buttonNextWeek.setIconSize(QtCore.QSize(50, 50))
         self.buttonNextWeek.setObjectName("buttonNextWeek")
         self.buttonPrevWeek = QtWidgets.QPushButton(self.frameWeek)
@@ -263,7 +300,7 @@ class Ui_MainWindow(object):
 "border-radius: 9px;\n"
 "}")
         self.buttonPrevWeek.setText("")
-        self.buttonPrevWeek.setIcon(icon1)
+        self.buttonPrevWeek.setIcon(icon2)
         self.buttonPrevWeek.setIconSize(QtCore.QSize(50, 50))
         self.buttonPrevWeek.setObjectName("buttonPrevWeek")
         self.WeekAverage = QtWidgets.QLabel(self.frameWeek)
@@ -317,11 +354,19 @@ class Ui_MainWindow(object):
 "font: 25 16pt \"Futura PT Light\";")
         self.WeekFullDays.setObjectName("WeekFullDays")
         self.WeekGrowth = QtWidgets.QLabel(self.frameWeek)
-        self.WeekGrowth.setGeometry(QtCore.QRect(140, 240, 200, 31))
+        self.WeekGrowth.setGeometry(QtCore.QRect(140, 240, 61, 31))
         self.WeekGrowth.setStyleSheet("border: none;\n"
 "color: white;\n"
 "font: 25 16pt \"Futura PT Light\";")
         self.WeekGrowth.setObjectName("WeekGrowth")
+        self.frameSOMETHING = QtWidgets.QFrame(self.centralwidget)
+        self.frameSOMETHING.setGeometry(QtCore.QRect(30, 360, 741, 221))
+        self.frameSOMETHING.setStyleSheet("background-color: rgb(60, 60, 60);\n"
+"border-radius: 15px;\n"
+"border: 1px solid rgb(255, 255, 255);")
+        self.frameSOMETHING.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frameSOMETHING.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frameSOMETHING.setObjectName("frameSOMETHING")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -334,7 +379,6 @@ class Ui_MainWindow(object):
         self.todayWorkTime.setText(_translate("MainWindow", "2 h 37 min"))
         self.todayProgress.setText(_translate("MainWindow", "76%"))
         self.todayFinishTime.setText(_translate("MainWindow", "0 h 23 min"))
-        self.buttonADD.setText(_translate("MainWindow", "ADD"))
         self.buttonSTARTTIMER.setText(_translate("MainWindow", "START TIMER"))
         self.labelThisWeek.setText(_translate("MainWindow", "THIS WEEK"))
         self.labelAverage.setText(_translate("MainWindow", "Average:"))

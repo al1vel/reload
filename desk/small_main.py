@@ -8,6 +8,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 from smallUI import Ui_MainWindow
 from addTimeUI import Ui_DialogAddTime
 from addTimeByTimerUI import Ui_DialogAddByTimer
+from listUI import Ui_DialogList
 
 
 class TimeTracker(QMainWindow):
@@ -22,6 +23,7 @@ class TimeTracker(QMainWindow):
         self.ui.buttonNextDay.clicked.connect(self.open_next_day)
         self.ui.buttonPrevWeek.clicked.connect(self.open_prev_week)
         self.ui.buttonNextWeek.clicked.connect(self.open_next_week)
+        self.ui.buttonLIST.clicked.connect(self.open_list_menu)
 
         self.timer = QtCore.QTimer(self)
         self.timer.setInterval(1000)
@@ -44,6 +46,12 @@ class TimeTracker(QMainWindow):
         self.window_default_add.show()
 
         self.ui_def_add.buttonADD.clicked.connect(self.add_time)
+
+    def open_list_menu(self):
+        self.list_menu = QtWidgets.QDialog()
+        self.ui_list_menu = Ui_DialogList()
+        self.ui_list_menu.setupUi(self.list_menu)
+        self.list_menu.show()
 
     def add_time(self):
         date = self.DISPLAYED_DATE.strftime("%d-%m-%Y")
