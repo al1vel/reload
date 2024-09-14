@@ -6,6 +6,7 @@ from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtCore import Qt
+import pyqtgraph as pg
 
 from smallUI import Ui_MainWindow
 from addTimeUI import Ui_DialogAddTime
@@ -31,8 +32,6 @@ class TimeTracker(QMainWindow):
         self.timer.setInterval(1000)
         self.timer.timeout.connect(self.display_time)
 
-
-
         self.START_TIME = "hui"
         self.TIMER_TIME = ""
 
@@ -42,6 +41,17 @@ class TimeTracker(QMainWindow):
         self.DISPLAYED_DATE = self.TODAY_DATE
         self.DISPLAYED_WEEK = self.TODAY_DATE
         self.DATE_WHEN_OPEN_APP = self.TODAY_DATE
+
+        self.ui.graph.setBackground((60, 60, 60))
+        self.ui.graph.setTitle("EFFICIENCY")
+
+    def update_graph(self):
+        time = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        temperature = [30, 32, 34, 32, 33, 31, 29, 32, 35, 45]
+
+        pen = pg.mkPen(color=(255, 255, 255), width=5)
+
+        self.ui.graph.plot(time, temperature, pen=pen)
 
     def open_addtime_menu(self):
         self.window_default_add = QtWidgets.QDialog()
@@ -281,4 +291,5 @@ if __name__ == "__main__":
     window.show()
     window.update_today_info()
     window.update_week_info()
+    window.update_graph()
     sys.exit(app.exec_())

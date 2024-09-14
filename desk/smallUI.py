@@ -354,19 +354,23 @@ class Ui_MainWindow(object):
 "font: 25 16pt \"Futura PT Light\";")
         self.WeekFullDays.setObjectName("WeekFullDays")
         self.WeekGrowth = QtWidgets.QLabel(self.frameWeek)
-        self.WeekGrowth.setGeometry(QtCore.QRect(140, 240, 61, 31))
+        self.WeekGrowth.setGeometry(QtCore.QRect(140, 240, 271, 31))
         self.WeekGrowth.setStyleSheet("border: none;\n"
 "color: white;\n"
 "font: 25 16pt \"Futura PT Light\";")
         self.WeekGrowth.setObjectName("WeekGrowth")
-        self.frameSOMETHING = QtWidgets.QFrame(self.centralwidget)
-        self.frameSOMETHING.setGeometry(QtCore.QRect(30, 360, 741, 221))
-        self.frameSOMETHING.setStyleSheet("background-color: rgb(60, 60, 60);\n"
+        self.frameGraphic = QtWidgets.QFrame(self.centralwidget)
+        self.frameGraphic.setGeometry(QtCore.QRect(30, 360, 741, 221))
+        self.frameGraphic.setStyleSheet("background-color: rgb(60, 60, 60);\n"
 "border-radius: 15px;\n"
 "border: 1px solid rgb(255, 255, 255);")
-        self.frameSOMETHING.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frameSOMETHING.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frameSOMETHING.setObjectName("frameSOMETHING")
+        self.frameGraphic.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frameGraphic.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frameGraphic.setObjectName("frameGraphic")
+        self.graph = PlotWidget(self.frameGraphic)
+        self.graph.setGeometry(QtCore.QRect(10, 10, 721, 201))
+        self.graph.setStyleSheet("border: none;")
+        self.graph.setObjectName("graph")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -391,7 +395,7 @@ class Ui_MainWindow(object):
         self.labelGrowth.setText(_translate("MainWindow", "Growth:"))
         self.WeekFullDays.setText(_translate("MainWindow", "6 days"))
         self.WeekGrowth.setText(_translate("MainWindow", "11%"))
-
+from pyqtgraph import PlotWidget
 import mainPage_res
 
 
