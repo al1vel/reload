@@ -80,3 +80,12 @@ def week_info(date, goal):
 
     answer = [overall_work_time, full_days_cnt]
     return answer
+
+
+def delete_reg(ind):
+    connection = sqlite3.connect('my_db.db', check_same_thread=False)
+    cursor = connection.cursor()
+    cursor.execute(f'DELETE FROM Operations WHERE id = {ind}')
+    # print("hui")
+    connection.commit()
+    connection.close()

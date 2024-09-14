@@ -31,7 +31,7 @@ class Ui_MainWindow(object):
         self.labelToday.setGeometry(QtCore.QRect(75, 10, 131, 51))
         self.labelToday.setStyleSheet("border: none;\n"
 "color: white;\n"
-"font: 57 25pt \"Futura PT Demi\";")
+"font: 57 21pt \"Futura PT Demi\";")
         self.labelToday.setAlignment(QtCore.Qt.AlignCenter)
         self.labelToday.setObjectName("labelToday")
         self.clockIcon = QtWidgets.QLabel(self.frameToday)
@@ -219,7 +219,7 @@ class Ui_MainWindow(object):
         self.labelThisWeek.setGeometry(QtCore.QRect(75, 10, 291, 51))
         self.labelThisWeek.setStyleSheet("border: none;\n"
 "color: white;\n"
-"font: 57 25pt \"Futura PT Demi\";")
+"font: 57 21pt \"Futura PT Demi\";")
         self.labelThisWeek.setAlignment(QtCore.Qt.AlignCenter)
         self.labelThisWeek.setObjectName("labelThisWeek")
         self.IconAverage = QtWidgets.QLabel(self.frameWeek)

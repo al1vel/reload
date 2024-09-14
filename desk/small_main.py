@@ -4,6 +4,8 @@ import smallDB
 
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtGui import QStandardItemModel, QStandardItem
+from PyQt5.QtCore import Qt
 
 from smallUI import Ui_MainWindow
 from addTimeUI import Ui_DialogAddTime
@@ -29,6 +31,8 @@ class TimeTracker(QMainWindow):
         self.timer.setInterval(1000)
         self.timer.timeout.connect(self.display_time)
 
+
+
         self.START_TIME = "hui"
         self.TIMER_TIME = ""
 
@@ -51,7 +55,48 @@ class TimeTracker(QMainWindow):
         self.list_menu = QtWidgets.QDialog()
         self.ui_list_menu = Ui_DialogList()
         self.ui_list_menu.setupUi(self.list_menu)
+
+        self.model = QStandardItemModel(0, 0)
+        self.model.setHorizontalHeaderLabels(["TIME", "COMMENT"])
+        self.ui_list_menu.tableView.setModel(self.model)
+
+        self.ui_list_menu.tableView.setColumnWidth(0, 50)
+        self.ui_list_menu.tableView.setColumnWidth(1, 120)
+        self.ui_list_menu.tableView.setColumnWidth(2, 150)
+
+        self.update_list()
+        # self.ui_list_menu.tableView.clearSpans()
         self.list_menu.show()
+
+        self.ui_list_menu.buttonDEL.clicked.connect(self.delete_reg_from_list)
+
+    def update_list(self):
+        data = smallDB.get_regs_for_date(self.DISPLAYED_DATE.strftime("%d-%m-%Y"))
+        print(self.DISPLAYED_DATE)
+        print(data)
+        x = 0
+        for reg in data:
+            worktime_str = f'{reg[2] // 60} h {reg[2] % 60} min'
+            # print(worktime_str)
+            worktime = QStandardItem(worktime_str)
+            # worktime.setTextAlignment(Qt.AlignCenter)
+            comment = QStandardItem(f'{reg[3]}')
+            ind = QStandardItem(f'{reg[0]}')
+            # comment.setTextAlignment(Qt.AlignCenter)
+            self.model.setItem(x, 0, ind)
+            self.model.setItem(x, 1, worktime)
+            self.model.setItem(x, 2, comment)
+            x += 1
+        print("Update ok")
+
+    def delete_reg_from_list(self):
+        index = self.ui_list_menu.tableView.selectedIndexes()[0].row()
+        ind = self.model.index(index, 0)
+        reg_id = int(self.ui_list_menu.tableView.model().itemData(ind)[0])
+        smallDB.delete_reg(reg_id)
+        self.model.removeRow(index)
+        self.update_week_info()
+        self.update_today_info()
 
     def add_time(self):
         date = self.DISPLAYED_DATE.strftime("%d-%m-%Y")

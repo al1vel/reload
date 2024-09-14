@@ -17,20 +17,25 @@ class Ui_DialogList(object):
         DialogList.resize(400, 600)
         DialogList.setStyleSheet("background-color: rgb(30, 30, 30);")
         self.tableView = QtWidgets.QTableView(DialogList)
-        self.tableView.setGeometry(QtCore.QRect(20, 110, 361, 192))
+        self.tableView.setGeometry(QtCore.QRect(20, 90, 361, 401))
+        self.tableView.setFocusPolicy(QtCore.Qt.NoFocus)
         self.tableView.setStyleSheet("QTableView {\n"
 "background-color: rgb(60, 60, 60);\n"
 "border: 1px solid rgb(255,255,255);\n"
-"border-bottom-right-radius: 15px;\n"
-"border-bottom-left-radius: 15px;\n"
+"border-radius: 15px;\n"
+"gridline-color: rgb(60, 60, 60);\n"
+"selection-background-color: rgb(100, 100, 100);\n"
+"color: white;\n"
+"font: 25 16pt \"Futura PT Light\";\n"
 "}\n"
 "\n"
-"QTableView::section{\n"
+"QHeaderView::section {\n"
 "background-color: rgb(60, 60, 60);\n"
 "color:white;\n"
-"border: 1px solid rgb(255,255,255);\n"
-"height:50px;\n"
-"font: 25 14pt \"Futura PT Light\";\n"
+"padding: 5px;\n"
+"font: 25 18pt \"Futura PT Light\";\n"
+"height: 40px;\n"
+"border-radius: 10px;\n"
 "}\n"
 "\n"
 "QTableView::item{\n"
@@ -38,11 +43,54 @@ class Ui_DialogList(object):
 "border-bottom: rgb(255,255,255);\n"
 "}\n"
 "\n"
-"QTableView::item::selected {\n"
-"border: none;\n"
-"\n"
+"QTableView::item:selected {\n"
+"color: yellow;\n"
 "}")
+        self.tableView.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.tableView.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.tableView.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
+        self.tableView.setProperty("showDropIndicator", False)
+        self.tableView.setShowGrid(False)
+        self.tableView.setWordWrap(False)
         self.tableView.setObjectName("tableView")
+        self.tableView.horizontalHeader().setVisible(False)
+        self.tableView.horizontalHeader().setDefaultSectionSize(180)
+        self.tableView.horizontalHeader().setHighlightSections(True)
+        self.tableView.horizontalHeader().setStretchLastSection(True)
+        self.tableView.verticalHeader().setVisible(False)
+        self.labelTodayRegs = QtWidgets.QLabel(DialogList)
+        self.labelTodayRegs.setGeometry(QtCore.QRect(30, 20, 291, 51))
+        self.labelTodayRegs.setStyleSheet("border: none;\n"
+"color: white;\n"
+"font: 57 25pt \"Futura PT Demi\";")
+        self.labelTodayRegs.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.labelTodayRegs.setObjectName("labelTodayRegs")
+        self.buttonDEL = QtWidgets.QPushButton(DialogList)
+        self.buttonDEL.setGeometry(QtCore.QRect(20, 510, 361, 71))
+        self.buttonDEL.setStyleSheet("QPushButton {\n"
+"border: 1px solid rgb(255, 255, 255);\n"
+"background-color: rgb(70, 70, 70);\n"
+"border-radius: 15px;\n"
+"font: 57 12pt \"Futura PT Demi\";\n"
+"color: white;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"border: 1px solid rgb(255, 255, 255);\n"
+"background-color: rgb(90, 90, 90);\n"
+"border-radius: 15px;\n"
+"font: 57 12pt \"Futura PT Demi\";\n"
+"color: white;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"border: 2px solid rgb(255, 255, 255);\n"
+"background-color: rgb(90, 90, 90);\n"
+"border-radius: 15px;\n"
+"font: 57 12pt \"Futura PT Demi\";\n"
+"color: white;\n"
+"}")
+        self.buttonDEL.setObjectName("buttonDEL")
 
         self.retranslateUi(DialogList)
         QtCore.QMetaObject.connectSlotsByName(DialogList)
@@ -50,6 +98,8 @@ class Ui_DialogList(object):
     def retranslateUi(self, DialogList):
         _translate = QtCore.QCoreApplication.translate
         DialogList.setWindowTitle(_translate("DialogList", "LIST"))
+        self.labelTodayRegs.setText(_translate("DialogList", "Today regs:"))
+        self.buttonDEL.setText(_translate("DialogList", "DELETE"))
 
 
 if __name__ == "__main__":

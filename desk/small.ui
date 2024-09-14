@@ -55,7 +55,7 @@ border: 1px solid rgb(255, 255, 255);</string>
      <property name="styleSheet">
       <string notr="true">border: none;
 color: white;
-font: 57 25pt &quot;Futura PT Demi&quot;;</string>
+font: 57 21pt &quot;Futura PT Demi&quot;;</string>
      </property>
      <property name="text">
       <string>TODAY</string>
@@ -431,7 +431,7 @@ border: 1px solid rgb(255, 255, 255);</string>
      <property name="styleSheet">
       <string notr="true">border: none;
 color: white;
-font: 57 25pt &quot;Futura PT Demi&quot;;</string>
+font: 57 21pt &quot;Futura PT Demi&quot;;</string>
      </property>
      <property name="text">
       <string>THIS WEEK</string>
