@@ -13,6 +13,12 @@ def db_init():
     amount_of_time INTEGER,
     occupation TEXT NOT NULL)''')
 
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS Settings (
+    id INTEGER,
+    daysCnt INTEGER,
+    goal INTEGER)''')
+
 
 def add_time_to_db(date, amount_of_time, occupation):
     connection = sqlite3.connect('my_db.db', check_same_thread=False)
@@ -102,3 +108,25 @@ def get_graph_data(days_cnt, date, goal):
         date = date - datetime.timedelta(days=1)
 
     return result
+
+
+def save_settings(days_cnt, goal):
+    connection = sqlite3.connect('my_db.db', check_same_thread=False)
+    cursor = connection.cursor()
+
+    cursor.execute(f'DELETE FROM Settings WHERE id = {1}')
+
+    cursor.execute(f'INSERT INTO Settings (id, daysCnt, goal) VALUES (?, ?, ?)',
+                   (1, days_cnt, goal))
+    connection.commit()
+    connection.close()
+
+
+def get_settings():
+    connection = sqlite3.connect('my_db.db', check_same_thread=False)
+    cursor = connection.cursor()
+
+    cursor.execute(f'SELECT * FROM Settings WHERE id = {1}')
+    settings = cursor.fetchall()
+
+    return settings

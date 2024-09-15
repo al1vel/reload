@@ -207,6 +207,37 @@ class Ui_MainWindow(object):
         self.buttonLIST.setIcon(icon3)
         self.buttonLIST.setIconSize(QtCore.QSize(32, 32))
         self.buttonLIST.setObjectName("buttonLIST")
+        self.pushButton = QtWidgets.QPushButton(self.frameToday)
+        self.pushButton.setGeometry(QtCore.QRect(214, 150, 51, 51))
+        self.pushButton.setStyleSheet("QPushButton {\n"
+"border: 1px solid rgb(255, 255, 255);\n"
+"background-color: rgb(70, 70, 70);\n"
+"border-radius: 15px;\n"
+"font: 57 12pt \"Futura PT Demi\";\n"
+"color: white;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"border: 1px solid rgb(255, 255, 255);\n"
+"background-color: rgb(90, 90, 90);\n"
+"border-radius: 15px;\n"
+"font: 57 12pt \"Futura PT Demi\";\n"
+"color: white;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"border: 2px solid rgb(255, 255, 255);\n"
+"background-color: rgb(90, 90, 90);\n"
+"border-radius: 15px;\n"
+"font: 57 12pt \"Futura PT Demi\";\n"
+"color: white;\n"
+"}")
+        self.pushButton.setText("")
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap(":/icons/settings40.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButton.setIcon(icon4)
+        self.pushButton.setIconSize(QtCore.QSize(32, 32))
+        self.pushButton.setObjectName("pushButton")
         self.frameWeek = QtWidgets.QFrame(self.centralwidget)
         self.frameWeek.setGeometry(QtCore.QRect(340, 40, 431, 291))
         self.frameWeek.setStyleSheet("background-color: rgb(60, 60, 60);\n"

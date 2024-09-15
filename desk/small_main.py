@@ -13,6 +13,7 @@ from smallUI import Ui_MainWindow
 from addTimeUI import Ui_DialogAddTime
 from addTimeByTimerUI import Ui_DialogAddByTimer
 from listUI import Ui_DialogList
+from settingsUI import Ui_DialogSettings
 
 
 class TimeTracker(QMainWindow):
@@ -28,6 +29,7 @@ class TimeTracker(QMainWindow):
         self.ui.buttonPrevWeek.clicked.connect(self.open_prev_week)
         self.ui.buttonNextWeek.clicked.connect(self.open_next_week)
         self.ui.buttonLIST.clicked.connect(self.open_list_menu)
+        self.ui.pushButton.clicked.connect(self.open_settings_menu)
 
         self.timer = QtCore.QTimer(self)
         self.timer.setInterval(1000)
@@ -37,6 +39,7 @@ class TimeTracker(QMainWindow):
         self.TIMER_TIME = ""
 
         self.EVERYDAY_GOAL = 200
+        self.DAYS_IN_GRAPH = 20
 
         self.TODAY_DATE = datetime.date.today()
         self.DISPLAYED_DATE = self.TODAY_DATE
@@ -50,14 +53,17 @@ class TimeTracker(QMainWindow):
         self.ui.graph.getAxis('bottom').setVisible(False)
 
     def update_graph(self):
-        data = smallDB.get_graph_data(20, self.TODAY_DATE, self.EVERYDAY_GOAL)
-        print(data)
-        dates = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+        if self.DAYS_IN_GRAPH == 0:
+            self.DAYS_IN_GRAPH = 20
+        data = smallDB.get_graph_data(self.DAYS_IN_GRAPH, self.TODAY_DATE, self.EVERYDAY_GOAL)
+        # print(data)
+        # print(self.DAYS_IN_GRAPH)
+        dates = [i for i in range(self.DAYS_IN_GRAPH)]
         times = []
-        for i in range(19, -1, -1):
+        for i in range(self.DAYS_IN_GRAPH - 1, -1, -1):
             times.append(int(data[i][1]))
-        print(dates)
-        print(times)
+        # print(dates)
+        # print(times)
 
         pen = pg.mkPen(color=(180, 180, 180), width=6)
         self.ui.graph.clear()
@@ -70,6 +76,14 @@ class TimeTracker(QMainWindow):
         self.window_default_add.show()
 
         self.ui_def_add.buttonADD.clicked.connect(self.add_time)
+
+    def open_settings_menu(self):
+        self.window_settings = QtWidgets.QDialog()
+        self.ui_settings = Ui_DialogSettings()
+        self.ui_settings.setupUi(self.window_settings)
+        self.window_settings.show()
+
+        self.ui_settings.buttonSAVE.clicked.connect(self.save_settings)
 
     def open_list_menu(self):
         self.list_menu = QtWidgets.QDialog()
@@ -138,6 +152,26 @@ class TimeTracker(QMainWindow):
         self.update_week_info()
         self.update_graph()
         self.window_default_add.close()
+
+    def save_settings(self):
+        goal = int(self.ui_settings.lineEditHours.text()) * 60 + int(self.ui_settings.lineEditMinutes.text())
+        days_in_graph = int(self.ui_settings.lineEditDaysInGraph.text())
+
+        self.EVERYDAY_GOAL = goal
+        self.DAYS_IN_GRAPH = days_in_graph
+
+        smallDB.save_settings(self.DAYS_IN_GRAPH, self.EVERYDAY_GOAL)
+
+        self.update_today_info()
+        self.update_week_info()
+        self.update_graph()
+        self.window_settings.close()
+
+    def update_settings(self):
+        settings = smallDB.get_settings()
+        print(settings)
+        self.DAYS_IN_GRAPH = settings[0][1]
+        self.EVERYDAY_GOAL = settings[0][2]
 
     def update_today_info(self):
         date = self.DISPLAYED_DATE.strftime("%d-%m-%Y")
@@ -302,6 +336,7 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = TimeTracker()
     window.show()
+    window.update_settings()
     window.update_today_info()
     window.update_week_info()
     window.update_graph()
