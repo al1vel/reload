@@ -170,8 +170,12 @@ class TimeTracker(QMainWindow):
     def update_settings(self):
         settings = smallDB.get_settings()
         print(settings)
-        self.DAYS_IN_GRAPH = settings[0][1]
-        self.EVERYDAY_GOAL = settings[0][2]
+        if len(settings) == 0:
+            self.DAYS_IN_GRAPH = 20
+            self.EVERYDAY_GOAL = 200
+        else:
+            self.DAYS_IN_GRAPH = settings[0][1]
+            self.EVERYDAY_GOAL = settings[0][2]
 
     def update_today_info(self):
         date = self.DISPLAYED_DATE.strftime("%d-%m-%Y")
