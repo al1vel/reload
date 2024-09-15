@@ -9,6 +9,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from pyqtgraph import PlotWidget
+import mainPage_res
 
 
 class Ui_MainWindow(object):
@@ -100,7 +102,7 @@ class Ui_MainWindow(object):
 "}")
         self.buttonADD.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../res/plus-30.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(":/icons/plus-30.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.buttonADD.setIcon(icon)
         self.buttonADD.setIconSize(QtCore.QSize(32, 32))
         self.buttonADD.setObjectName("buttonADD")
@@ -203,7 +205,7 @@ class Ui_MainWindow(object):
 "}")
         self.buttonLIST.setText("")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("../res/list-30.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap(":/icons/list-30.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.buttonLIST.setIcon(icon3)
         self.buttonLIST.setIconSize(QtCore.QSize(32, 32))
         self.buttonLIST.setObjectName("buttonLIST")
@@ -426,8 +428,9 @@ class Ui_MainWindow(object):
         self.labelGrowth.setText(_translate("MainWindow", "Growth:"))
         self.WeekFullDays.setText(_translate("MainWindow", "6 days"))
         self.WeekGrowth.setText(_translate("MainWindow", "11%"))
-from pyqtgraph import PlotWidget
-import mainPage_res
+
+
+
 
 
 if __name__ == "__main__":

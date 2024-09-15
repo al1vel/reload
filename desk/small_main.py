@@ -5,9 +5,8 @@ import smallDB
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
-from PyQt5.QtCore import Qt
 import pyqtgraph as pg
-from PyQt5 import QtGui
+
 
 from smallUI import Ui_MainWindow
 from addTimeUI import Ui_DialogAddTime
