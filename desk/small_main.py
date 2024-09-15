@@ -7,6 +7,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtCore import Qt
 import pyqtgraph as pg
+from PyQt5 import QtGui
 
 from smallUI import Ui_MainWindow
 from addTimeUI import Ui_DialogAddTime
@@ -44,14 +45,23 @@ class TimeTracker(QMainWindow):
 
         self.ui.graph.setBackground((60, 60, 60))
         self.ui.graph.setTitle("EFFICIENCY")
+        # self.ui.graph.showGrid(x=True, y=True)
+        self.ui.graph.getAxis('left').setVisible(False)
+        self.ui.graph.getAxis('bottom').setVisible(False)
 
     def update_graph(self):
-        time = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-        temperature = [30, 32, 34, 32, 33, 31, 29, 32, 35, 45]
+        data = smallDB.get_graph_data(20, self.TODAY_DATE, self.EVERYDAY_GOAL)
+        print(data)
+        dates = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+        times = []
+        for i in range(19, -1, -1):
+            times.append(int(data[i][1]))
+        print(dates)
+        print(times)
 
-        pen = pg.mkPen(color=(255, 255, 255), width=5)
-
-        self.ui.graph.plot(time, temperature, pen=pen)
+        pen = pg.mkPen(color=(180, 180, 180), width=6)
+        self.ui.graph.clear()
+        self.ui.graph.plot(dates, times, pen=pen)
 
     def open_addtime_menu(self):
         self.window_default_add = QtWidgets.QDialog()
@@ -107,6 +117,7 @@ class TimeTracker(QMainWindow):
         self.model.removeRow(index)
         self.update_week_info()
         self.update_today_info()
+        self.update_graph()
 
     def add_time(self):
         date = self.DISPLAYED_DATE.strftime("%d-%m-%Y")
@@ -125,6 +136,7 @@ class TimeTracker(QMainWindow):
         smallDB.add_time_to_db(date, amount_of_time, comment)
         self.update_today_info()
         self.update_week_info()
+        self.update_graph()
         self.window_default_add.close()
 
     def update_today_info(self):
@@ -211,6 +223,7 @@ class TimeTracker(QMainWindow):
         smallDB.add_time_to_db(date, amount_of_time, comment)
         self.update_today_info()
         self.update_week_info()
+        self.update_graph()
         self.window_timer_add.close()
 
     def open_prev_day(self):

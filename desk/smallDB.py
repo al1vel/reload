@@ -89,3 +89,16 @@ def delete_reg(ind):
     # print("hui")
     connection.commit()
     connection.close()
+
+
+def get_graph_data(days_cnt, date, goal):
+    result = []
+    for i in range(days_cnt):
+        date_str = date.strftime("%d-%m-%Y")
+
+        date_data = day_info(date_str, goal)
+        day = [date_str, date_data[0]]
+        result.append(day)
+        date = date - datetime.timedelta(days=1)
+
+    return result
