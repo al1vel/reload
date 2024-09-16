@@ -28,7 +28,7 @@ class TimeTracker(QMainWindow):
         self.ui.buttonPrevWeek.clicked.connect(self.open_prev_week)
         self.ui.buttonNextWeek.clicked.connect(self.open_next_week)
         self.ui.buttonLIST.clicked.connect(self.open_list_menu)
-        self.ui.pushButton.clicked.connect(self.open_settings_menu)
+        self.ui.buttonSETTINGS.clicked.connect(self.open_settings_menu)
 
         self.timer = QtCore.QTimer(self)
         self.timer.setInterval(1000)
@@ -178,20 +178,6 @@ class TimeTracker(QMainWindow):
 
     def update_today_info(self):
         date = self.DISPLAYED_DATE.strftime("%d-%m-%Y")
-        # today_regs = smallDB.get_regs_for_date(date)
-        # print(today_regs)
-        #
-        # work_time = 0
-        # for reg in today_regs:
-        #     work_time += reg[2]
-        # work_time_str = f'{work_time // 60} h {work_time % 60} min'
-        #
-        # goal_time = self.EVERYDAY_GOAL - work_time
-        # if goal_time < 0:
-        #     goal_time = 0
-        # goal_time_str = f'{goal_time // 60} h {goal_time % 60} min'
-        #
-        # percent_str = f'{round(((work_time / self.EVERYDAY_GOAL) * 100), 1)} %'
         data = smallDB.day_info(date, self.EVERYDAY_GOAL)
         work_time_str = f'{data[0] // 60} h {data[0] % 60} min'
         goal_time_str = f'{data[1] // 60} h {data[1] % 60} min'
