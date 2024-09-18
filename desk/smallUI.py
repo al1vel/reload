@@ -214,7 +214,7 @@ class Ui_MainWindow(object):
         self.buttonSETTINGS.setObjectName("buttonSETTINGS")
         self.frameTimer = QtWidgets.QFrame(self.frameToday)
         self.frameTimer.setGeometry(QtCore.QRect(230, 157, 108, 121))
-        self.frameTimer.setStyleSheet("background-color: rgb(30, 30, 30);")
+        self.frameTimer.setStyleSheet("background-color: rgb(50, 50, 50);")
         self.frameTimer.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frameTimer.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frameTimer.setObjectName("frameTimer")

@@ -2,10 +2,10 @@ import sys
 import datetime
 import smallDB
 
-from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 import pyqtgraph as pg
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 from smallUI import Ui_MainWindow
@@ -23,6 +23,8 @@ class TimeTracker(QMainWindow):
 
         self.ui.buttonADD.clicked.connect(self.open_addtime_menu)
         self.ui.buttonSTARTTIMER.clicked.connect(self.click_timer_button)
+        self.ui.buttonPAUSETIMER.clicked.connect(self.pause_timer)
+        self.ui.buttonSAVETIMER.clicked.connect(self.save_timer)
         self.ui.buttonPrevDay.clicked.connect(self.open_prev_day)
         self.ui.buttonNextDay.clicked.connect(self.open_next_day)
         self.ui.buttonPrevWeek.clicked.connect(self.open_prev_week)
@@ -34,8 +36,10 @@ class TimeTracker(QMainWindow):
         self.timer.setInterval(1000)
         self.timer.timeout.connect(self.display_time)
 
-        self.START_TIME = "hui"
         self.TIMER_TIME = ""
+        self.TimerCounter = 0
+        self.pause_flag = 'pause'
+        self.timer_started = False
 
         self.EVERYDAY_GOAL = 200
         self.DAYS_IN_GRAPH = 20
@@ -188,26 +192,60 @@ class TimeTracker(QMainWindow):
         self.ui.todayProgress.setText(percent_str)
 
     def click_timer_button(self):
-        if self.ui.buttonSTARTTIMER.text() == "START TIMER":
+        if not self.timer_started:
             self.ui.buttonSTARTTIMER.setText("0:00:00")
             self.timer.start()
-            self.START_TIME = QtCore.QDateTime.currentDateTime().toString('yyyy:MM:dd:hh:mm:ss')
-        else:
-            self.timer.stop()
-            self.TIMER_TIME = self.ui.buttonSTARTTIMER.text()
-            self.ui.buttonSTARTTIMER.setText("START TIMER")
-            self.open_add_timertime_menu()
+            self.timer_started = True
 
     def display_time(self):
-        st = self.START_TIME.split(":")
-        time_start = datetime.datetime(int(st[0]), int(st[1]), int(st[2]), int(st[3]), int(st[4]), int(st[5]))
+        self.TimerCounter += 1
+        hrs = self.TimerCounter // 360
+        mins = self.TimerCounter // 60
+        if len(str(mins)) == 1:
+            mins = f'0{mins}'
+        secs = self.TimerCounter % 60
+        if len(str(secs)) == 1:
+            secs = f'0{secs}'
+        time_str = f'{hrs}:{mins}:{secs}'
+        self.ui.buttonSTARTTIMER.setText(str(time_str))
 
-        cur_time = QtCore.QDateTime.currentDateTime().toString('yyyy:MM:dd:hh:mm:ss')
-        fn = cur_time.split(":")
-        time_now = datetime.datetime(int(fn[0]), int(fn[1]), int(fn[2]), int(fn[3]), int(fn[4]), int(fn[5]))
+    def pause_timer(self):
+        if not self.timer_started:
+            return
+        if self.pause_flag == "pause":
+            ic = QtGui.QIcon()
+            ic.addPixmap(QtGui.QPixmap(":/icons/icons8-play-24.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            self.ui.buttonPAUSETIMER.setIcon(ic)
+            self.ui.buttonPAUSETIMER.setIconSize(QtCore.QSize(25, 25))
 
-        diff = time_now - time_start
-        self.ui.buttonSTARTTIMER.setText(str(diff))
+            self.timer.stop()
+            self.pause_flag = "continue"
+
+        elif self.pause_flag == "continue":
+            ic = QtGui.QIcon()
+            ic.addPixmap(QtGui.QPixmap(":/icons/icons8-pause-30.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            self.ui.buttonPAUSETIMER.setIcon(ic)
+            self.ui.buttonPAUSETIMER.setIconSize(QtCore.QSize(25, 25))
+
+            self.timer.start()
+            self.pause_flag = "pause"
+
+    def save_timer(self):
+        if not self.timer_started:
+            return
+
+        ic = QtGui.QIcon()
+        ic.addPixmap(QtGui.QPixmap(":/icons/icons8-pause-30.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.ui.buttonPAUSETIMER.setIcon(ic)
+        self.ui.buttonPAUSETIMER.setIconSize(QtCore.QSize(25, 25))
+        self.pause_flag = "pause"
+
+        self.timer.stop()
+        self.TIMER_TIME = self.ui.buttonSTARTTIMER.text()
+        self.ui.buttonSTARTTIMER.setText("START TIMER")
+        self.timer_started = False
+        self.TimerCounter = 0
+        self.open_add_timertime_menu()
 
     def open_add_timertime_menu(self):
         hrs = str(self.TIMER_TIME).split(":")[0]

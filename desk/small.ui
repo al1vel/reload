@@ -418,7 +418,7 @@ color: white;
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(30, 30, 30);</string>
+      <string notr="true">background-color: rgb(50, 50, 50);</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
