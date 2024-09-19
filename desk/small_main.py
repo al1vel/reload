@@ -86,6 +86,11 @@ class TimeTracker(QMainWindow):
         self.ui_settings.setupUi(self.window_settings)
         self.window_settings.show()
 
+
+        self.ui_settings.lineEditHours.setText(f'{self.EVERYDAY_GOAL // 60}')
+        self.ui_settings.lineEditMinutes.setText(f'{self.EVERYDAY_GOAL % 60}')
+        self.ui_settings.lineEditDaysInGraph.setText(f'{self.DAYS_IN_GRAPH}')
+
         self.ui_settings.buttonSAVE.clicked.connect(self.save_settings)
 
     def open_list_menu(self):
