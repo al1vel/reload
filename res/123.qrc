@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="icons">
+    <file>icon.ico</file>
     <file>icons8-download-24.png</file>
     <file>icons8-play-24.png</file>
     <file>settings40.png</file>

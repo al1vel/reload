@@ -9,11 +9,13 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QIcon
 
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
+        MainWindow.setWindowIcon(QIcon(":/icons/icon.ico"))
         MainWindow.resize(800, 600)
         MainWindow.setIconSize(QtCore.QSize(48, 48))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
