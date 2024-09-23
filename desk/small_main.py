@@ -204,8 +204,12 @@ class TimeTracker(QMainWindow):
 
     def display_time(self):
         self.TimerCounter += 1
-        hrs = self.TimerCounter // 3600
-        mins = self.TimerCounter // 60
+
+        cur_time = self.TimerCounter
+        hrs = cur_time // 3600
+        while cur_time > 3600:
+            cur_time -= 3600
+        mins = cur_time // 60
         if len(str(mins)) == 1:
             mins = f'0{mins}'
         secs = self.TimerCounter % 60
