@@ -380,7 +380,7 @@ class TimeTracker(QMainWindow):
         for i in range(5):
             if i < cnt:
                 headers[i].setText(f'{i + 1}.')
-                text = f'{data[i][0][:18]}. — {data[i][1] // 60}:{data[i][1] % 60}h'
+                text = f'{data[i][0][:15]}. — {data[i][1] // 60}:{data[i][1] % 60}h'
                 labels[i].setText(text)
             else:
                 headers[i].setText("")
