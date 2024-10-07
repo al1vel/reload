@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="icons">
+    <file>find-50.png</file>
+    <file>pedestal-50.png</file>
     <file>icon.ico</file>
     <file>icons8-download-24.png</file>
     <file>icons8-play-24.png</file>

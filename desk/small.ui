@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>1110</width>
     <height>600</height>
    </rect>
   </property>
@@ -21,7 +21,7 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(30, 30, 30);</string>
+    <string notr="true">background-color: rgb(40, 36, 40);</string>
    </property>
    <widget class="QFrame" name="frameToday">
     <property name="geometry">
@@ -418,7 +418,8 @@ color: white;
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(50, 50, 50);</string>
+      <string notr="true">background-color: rgb(60, 55, 60);
+</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
@@ -1005,6 +1006,435 @@ border: 1px solid rgb(255, 255, 255);</string>
      </property>
      <property name="styleSheet">
       <string notr="true">border: none;</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frameWeek_2">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>40</y>
+      <width>281</width>
+      <height>291</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(60, 60, 60);
+border-radius: 15px;
+border: 1px solid rgb(255, 255, 255);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="labelThisWeek_2">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>10</y>
+       <width>111</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: none;
+color: white;
+font: 57 21pt &quot;Futura PT Demi&quot;;</string>
+     </property>
+     <property name="text">
+      <string>TOP 5</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="IconAverage_2">
+     <property name="geometry">
+      <rect>
+       <x>75</x>
+       <y>10</y>
+       <width>51</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: none;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../res/123.qrc">:/icons/pedestal-50.png</pixmap>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelAverage_2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>80</y>
+       <width>21</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: none;
+color: white;
+font: 25 16pt &quot;Futura PT Light&quot;;</string>
+     </property>
+     <property name="text">
+      <string>1.</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelAverage_3">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>122</y>
+       <width>21</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: none;
+color: white;
+font: 25 16pt &quot;Futura PT Light&quot;;</string>
+     </property>
+     <property name="text">
+      <string>2.</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelAverage_4">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>161</y>
+       <width>21</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: none;
+color: white;
+font: 25 16pt &quot;Futura PT Light&quot;;</string>
+     </property>
+     <property name="text">
+      <string>3.</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelAverage_5">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>200</y>
+       <width>21</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: none;
+color: white;
+font: 25 16pt &quot;Futura PT Light&quot;;</string>
+     </property>
+     <property name="text">
+      <string>4.</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelAverage_6">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>238</y>
+       <width>21</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: none;
+color: white;
+font: 25 16pt &quot;Futura PT Light&quot;;</string>
+     </property>
+     <property name="text">
+      <string>5.</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelAverage_7">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>80</y>
+       <width>231</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: none;
+color: white;
+font: 25 16pt &quot;Futura PT Light&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Task 1</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelAverage_8">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>122</y>
+       <width>231</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: none;
+color: white;
+font: 25 16pt &quot;Futura PT Light&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Task 2</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelAverage_9">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>161</y>
+       <width>231</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: none;
+color: white;
+font: 25 16pt &quot;Futura PT Light&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Task 3</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelAverage_10">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>200</y>
+       <width>231</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: none;
+color: white;
+font: 25 16pt &quot;Futura PT Light&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Task 4</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelAverage_11">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>238</y>
+       <width>231</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: none;
+color: white;
+font: 25 16pt &quot;Futura PT Light&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Task 5</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frameWeek_3">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>360</y>
+      <width>281</width>
+      <height>221</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(60, 60, 60);
+border-radius: 15px;
+border: 1px solid rgb(255, 255, 255);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="labelThisWeek_3">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>10</y>
+       <width>111</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: none;
+color: white;
+font: 57 21pt &quot;Futura PT Demi&quot;;</string>
+     </property>
+     <property name="text">
+      <string>FIND</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="IconAverage_3">
+     <property name="geometry">
+      <rect>
+       <x>75</x>
+       <y>10</y>
+       <width>51</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: none;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../res/123.qrc">:/icons/find-50.png</pixmap>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>80</y>
+       <width>191</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(60, 55, 60);
+font: 12pt &quot;Futura PT Book&quot;;
+color:white;</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>80</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+border: 1px solid rgb(255, 255, 255);
+background-color: rgb(70, 70, 70);
+border-radius: 15px;
+font: 57 12pt &quot;Futura PT Demi&quot;;
+color: white;
+}
+
+QPushButton:hover {
+border: 1px solid rgb(255, 255, 255);
+background-color: rgb(90, 90, 90);
+border-radius: 15px;
+font: 57 12pt &quot;Futura PT Demi&quot;;
+color: white;
+}
+
+QPushButton:pressed {
+border: 2px solid rgb(255, 255, 255);
+background-color: rgb(90, 90, 90);
+border-radius: 15px;
+font: 57 12pt &quot;Futura PT Demi&quot;;
+color: white;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../res/123.qrc">
+       <normaloff>:/icons/find-50.png</normaloff>:/icons/find-50.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelAverage_12">
+     <property name="geometry">
+      <rect>
+       <x>65</x>
+       <y>146</y>
+       <width>71</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: none;
+color: white;
+font: 25 20pt &quot;Futura PT Light&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Time:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="IconOverall_2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>140</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: none;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../res/123.qrc">:/icons/clock30.png</pixmap>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelAverage_13">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>146</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: none;
+color: white;
+font: 25 20pt &quot;Futura PT Light&quot;;</string>
+     </property>
+     <property name="text">
+      <string>0 h 00 min</string>
      </property>
     </widget>
    </widget>

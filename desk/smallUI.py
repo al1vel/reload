@@ -9,17 +9,15 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtGui import QIcon
 
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.setWindowIcon(QIcon(":/icons/icon.ico"))
-        MainWindow.resize(800, 600)
+        MainWindow.resize(1110, 600)
         MainWindow.setIconSize(QtCore.QSize(48, 48))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
-        self.centralwidget.setStyleSheet("background-color: rgb(30, 30, 30);")
+        self.centralwidget.setStyleSheet("background-color: rgb(40, 36, 40);")
         self.centralwidget.setObjectName("centralwidget")
         self.frameToday = QtWidgets.QFrame(self.centralwidget)
         self.frameToday.setGeometry(QtCore.QRect(30, 40, 350, 291))
@@ -102,7 +100,7 @@ class Ui_MainWindow(object):
 "}")
         self.buttonADD.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/icons/plus-30.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("../res/plus-30.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.buttonADD.setIcon(icon)
         self.buttonADD.setIconSize(QtCore.QSize(32, 32))
         self.buttonADD.setObjectName("buttonADD")
@@ -179,7 +177,7 @@ class Ui_MainWindow(object):
 "}")
         self.buttonLIST.setText("")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(":/icons/list-30.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap("../res/list-30.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.buttonLIST.setIcon(icon3)
         self.buttonLIST.setIconSize(QtCore.QSize(32, 32))
         self.buttonLIST.setObjectName("buttonLIST")
@@ -216,7 +214,8 @@ class Ui_MainWindow(object):
         self.buttonSETTINGS.setObjectName("buttonSETTINGS")
         self.frameTimer = QtWidgets.QFrame(self.frameToday)
         self.frameTimer.setGeometry(QtCore.QRect(230, 157, 108, 121))
-        self.frameTimer.setStyleSheet("background-color: rgb(50, 50, 50);")
+        self.frameTimer.setStyleSheet("background-color: rgb(60, 55, 60);\n"
+"")
         self.frameTimer.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frameTimer.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frameTimer.setObjectName("frameTimer")
@@ -472,6 +471,166 @@ class Ui_MainWindow(object):
         self.graph.setGeometry(QtCore.QRect(10, 10, 721, 201))
         self.graph.setStyleSheet("border: none;")
         self.graph.setObjectName("graph")
+        self.frameWeek_2 = QtWidgets.QFrame(self.centralwidget)
+        self.frameWeek_2.setGeometry(QtCore.QRect(800, 40, 281, 291))
+        self.frameWeek_2.setStyleSheet("background-color: rgb(60, 60, 60);\n"
+"border-radius: 15px;\n"
+"border: 1px solid rgb(255, 255, 255);")
+        self.frameWeek_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frameWeek_2.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frameWeek_2.setObjectName("frameWeek_2")
+        self.labelThisWeek_2 = QtWidgets.QLabel(self.frameWeek_2)
+        self.labelThisWeek_2.setGeometry(QtCore.QRect(110, 10, 111, 51))
+        self.labelThisWeek_2.setStyleSheet("border: none;\n"
+"color: white;\n"
+"font: 57 21pt \"Futura PT Demi\";")
+        self.labelThisWeek_2.setAlignment(QtCore.Qt.AlignCenter)
+        self.labelThisWeek_2.setObjectName("labelThisWeek_2")
+        self.IconAverage_2 = QtWidgets.QLabel(self.frameWeek_2)
+        self.IconAverage_2.setGeometry(QtCore.QRect(75, 10, 51, 51))
+        self.IconAverage_2.setStyleSheet("border: none;")
+        self.IconAverage_2.setText("")
+        self.IconAverage_2.setPixmap(QtGui.QPixmap(":/icons/pedestal-50.png"))
+        self.IconAverage_2.setAlignment(QtCore.Qt.AlignCenter)
+        self.IconAverage_2.setObjectName("IconAverage_2")
+        self.labelAverage_2 = QtWidgets.QLabel(self.frameWeek_2)
+        self.labelAverage_2.setGeometry(QtCore.QRect(20, 80, 21, 31))
+        self.labelAverage_2.setStyleSheet("border: none;\n"
+"color: white;\n"
+"font: 25 16pt \"Futura PT Light\";")
+        self.labelAverage_2.setObjectName("labelAverage_2")
+        self.labelAverage_3 = QtWidgets.QLabel(self.frameWeek_2)
+        self.labelAverage_3.setGeometry(QtCore.QRect(20, 122, 21, 31))
+        self.labelAverage_3.setStyleSheet("border: none;\n"
+"color: white;\n"
+"font: 25 16pt \"Futura PT Light\";")
+        self.labelAverage_3.setObjectName("labelAverage_3")
+        self.labelAverage_4 = QtWidgets.QLabel(self.frameWeek_2)
+        self.labelAverage_4.setGeometry(QtCore.QRect(20, 161, 21, 31))
+        self.labelAverage_4.setStyleSheet("border: none;\n"
+"color: white;\n"
+"font: 25 16pt \"Futura PT Light\";")
+        self.labelAverage_4.setObjectName("labelAverage_4")
+        self.labelAverage_5 = QtWidgets.QLabel(self.frameWeek_2)
+        self.labelAverage_5.setGeometry(QtCore.QRect(20, 200, 21, 31))
+        self.labelAverage_5.setStyleSheet("border: none;\n"
+"color: white;\n"
+"font: 25 16pt \"Futura PT Light\";")
+        self.labelAverage_5.setObjectName("labelAverage_5")
+        self.labelAverage_6 = QtWidgets.QLabel(self.frameWeek_2)
+        self.labelAverage_6.setGeometry(QtCore.QRect(20, 238, 21, 31))
+        self.labelAverage_6.setStyleSheet("border: none;\n"
+"color: white;\n"
+"font: 25 16pt \"Futura PT Light\";")
+        self.labelAverage_6.setObjectName("labelAverage_6")
+        self.labelAverage_7 = QtWidgets.QLabel(self.frameWeek_2)
+        self.labelAverage_7.setGeometry(QtCore.QRect(40, 80, 231, 31))
+        self.labelAverage_7.setStyleSheet("border: none;\n"
+"color: white;\n"
+"font: 25 16pt \"Futura PT Light\";")
+        self.labelAverage_7.setObjectName("labelAverage_7")
+        self.labelAverage_8 = QtWidgets.QLabel(self.frameWeek_2)
+        self.labelAverage_8.setGeometry(QtCore.QRect(40, 122, 231, 31))
+        self.labelAverage_8.setStyleSheet("border: none;\n"
+"color: white;\n"
+"font: 25 16pt \"Futura PT Light\";")
+        self.labelAverage_8.setObjectName("labelAverage_8")
+        self.labelAverage_9 = QtWidgets.QLabel(self.frameWeek_2)
+        self.labelAverage_9.setGeometry(QtCore.QRect(40, 161, 231, 31))
+        self.labelAverage_9.setStyleSheet("border: none;\n"
+"color: white;\n"
+"font: 25 16pt \"Futura PT Light\";")
+        self.labelAverage_9.setObjectName("labelAverage_9")
+        self.labelAverage_10 = QtWidgets.QLabel(self.frameWeek_2)
+        self.labelAverage_10.setGeometry(QtCore.QRect(40, 200, 231, 31))
+        self.labelAverage_10.setStyleSheet("border: none;\n"
+"color: white;\n"
+"font: 25 16pt \"Futura PT Light\";")
+        self.labelAverage_10.setObjectName("labelAverage_10")
+        self.labelAverage_11 = QtWidgets.QLabel(self.frameWeek_2)
+        self.labelAverage_11.setGeometry(QtCore.QRect(40, 238, 231, 31))
+        self.labelAverage_11.setStyleSheet("border: none;\n"
+"color: white;\n"
+"font: 25 16pt \"Futura PT Light\";")
+        self.labelAverage_11.setObjectName("labelAverage_11")
+        self.frameWeek_3 = QtWidgets.QFrame(self.centralwidget)
+        self.frameWeek_3.setGeometry(QtCore.QRect(800, 360, 281, 221))
+        self.frameWeek_3.setStyleSheet("background-color: rgb(60, 60, 60);\n"
+"border-radius: 15px;\n"
+"border: 1px solid rgb(255, 255, 255);")
+        self.frameWeek_3.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frameWeek_3.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frameWeek_3.setObjectName("frameWeek_3")
+        self.labelThisWeek_3 = QtWidgets.QLabel(self.frameWeek_3)
+        self.labelThisWeek_3.setGeometry(QtCore.QRect(110, 10, 111, 51))
+        self.labelThisWeek_3.setStyleSheet("border: none;\n"
+"color: white;\n"
+"font: 57 21pt \"Futura PT Demi\";")
+        self.labelThisWeek_3.setAlignment(QtCore.Qt.AlignCenter)
+        self.labelThisWeek_3.setObjectName("labelThisWeek_3")
+        self.IconAverage_3 = QtWidgets.QLabel(self.frameWeek_3)
+        self.IconAverage_3.setGeometry(QtCore.QRect(75, 10, 51, 51))
+        self.IconAverage_3.setStyleSheet("border: none;")
+        self.IconAverage_3.setText("")
+        self.IconAverage_3.setPixmap(QtGui.QPixmap(":/icons/find-50.png"))
+        self.IconAverage_3.setAlignment(QtCore.Qt.AlignCenter)
+        self.IconAverage_3.setObjectName("IconAverage_3")
+        self.lineEdit = QtWidgets.QLineEdit(self.frameWeek_3)
+        self.lineEdit.setGeometry(QtCore.QRect(20, 80, 191, 41))
+        self.lineEdit.setStyleSheet("background-color: rgb(60, 55, 60);\n"
+"font: 12pt \"Futura PT Book\";\n"
+"color:white;")
+        self.lineEdit.setObjectName("lineEdit")
+        self.pushButton = QtWidgets.QPushButton(self.frameWeek_3)
+        self.pushButton.setGeometry(QtCore.QRect(220, 80, 41, 41))
+        self.pushButton.setStyleSheet("QPushButton {\n"
+"border: 1px solid rgb(255, 255, 255);\n"
+"background-color: rgb(70, 70, 70);\n"
+"border-radius: 15px;\n"
+"font: 57 12pt \"Futura PT Demi\";\n"
+"color: white;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"border: 1px solid rgb(255, 255, 255);\n"
+"background-color: rgb(90, 90, 90);\n"
+"border-radius: 15px;\n"
+"font: 57 12pt \"Futura PT Demi\";\n"
+"color: white;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"border: 2px solid rgb(255, 255, 255);\n"
+"background-color: rgb(90, 90, 90);\n"
+"border-radius: 15px;\n"
+"font: 57 12pt \"Futura PT Demi\";\n"
+"color: white;\n"
+"}")
+        self.pushButton.setText("")
+        icon7 = QtGui.QIcon()
+        icon7.addPixmap(QtGui.QPixmap(":/icons/find-50.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButton.setIcon(icon7)
+        self.pushButton.setIconSize(QtCore.QSize(24, 24))
+        self.pushButton.setObjectName("pushButton")
+        self.labelAverage_12 = QtWidgets.QLabel(self.frameWeek_3)
+        self.labelAverage_12.setGeometry(QtCore.QRect(65, 146, 71, 31))
+        self.labelAverage_12.setStyleSheet("border: none;\n"
+"color: white;\n"
+"font: 25 20pt \"Futura PT Light\";")
+        self.labelAverage_12.setObjectName("labelAverage_12")
+        self.IconOverall_2 = QtWidgets.QLabel(self.frameWeek_3)
+        self.IconOverall_2.setGeometry(QtCore.QRect(20, 140, 41, 41))
+        self.IconOverall_2.setStyleSheet("border: none;")
+        self.IconOverall_2.setText("")
+        self.IconOverall_2.setPixmap(QtGui.QPixmap(":/icons/clock30.png"))
+        self.IconOverall_2.setAlignment(QtCore.Qt.AlignCenter)
+        self.IconOverall_2.setObjectName("IconOverall_2")
+        self.labelAverage_13 = QtWidgets.QLabel(self.frameWeek_3)
+        self.labelAverage_13.setGeometry(QtCore.QRect(130, 146, 121, 31))
+        self.labelAverage_13.setStyleSheet("border: none;\n"
+"color: white;\n"
+"font: 25 20pt \"Futura PT Light\";")
+        self.labelAverage_13.setObjectName("labelAverage_13")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -496,6 +655,20 @@ class Ui_MainWindow(object):
         self.labelGrowth.setText(_translate("MainWindow", "Growth:"))
         self.WeekFullDays.setText(_translate("MainWindow", "6 days"))
         self.WeekGrowth.setText(_translate("MainWindow", "11%"))
+        self.labelThisWeek_2.setText(_translate("MainWindow", "TOP 5"))
+        self.labelAverage_2.setText(_translate("MainWindow", "1."))
+        self.labelAverage_3.setText(_translate("MainWindow", "2."))
+        self.labelAverage_4.setText(_translate("MainWindow", "3."))
+        self.labelAverage_5.setText(_translate("MainWindow", "4."))
+        self.labelAverage_6.setText(_translate("MainWindow", "5."))
+        self.labelAverage_7.setText(_translate("MainWindow", "Task 1"))
+        self.labelAverage_8.setText(_translate("MainWindow", "Task 2"))
+        self.labelAverage_9.setText(_translate("MainWindow", "Task 3"))
+        self.labelAverage_10.setText(_translate("MainWindow", "Task 4"))
+        self.labelAverage_11.setText(_translate("MainWindow", "Task 5"))
+        self.labelThisWeek_3.setText(_translate("MainWindow", "FIND"))
+        self.labelAverage_12.setText(_translate("MainWindow", "Time:"))
+        self.labelAverage_13.setText(_translate("MainWindow", "0 h 00 min"))
 from pyqtgraph import PlotWidget
 import mainPage_res
 
