@@ -129,4 +129,60 @@ def get_settings():
     cursor.execute(f'SELECT * FROM Settings WHERE id = {1}')
     settings = cursor.fetchall()
 
+    connection.commit()
+    connection.close()
+
     return settings
+
+
+def week_top5(date):
+    day_num = date.weekday()
+    week_start = date - datetime.timedelta(days=day_num)
+    day = week_start
+
+    occupation = dict()
+
+    for i in range(7):
+        day_str = day.strftime("%d-%m-%Y")
+
+        day_data = get_regs_for_date(day_str)
+        for reg in day_data:
+            if reg[3] in occupation.keys():
+                occupation[reg[3]] += reg[2]
+            else:
+                occupation[reg[3]] = reg[2]
+
+        day = day + datetime.timedelta(days=1)
+    #print(occupation)
+
+    sorted_occupation = dict(sorted(occupation.items(), key=lambda item: item[1], reverse=True))
+    #print(sorted_occupation)
+
+    res = []
+    for i, (key, value) in enumerate(sorted_occupation.items()):
+        if i < 5:
+            # print(key, value)
+            res.append((key, sorted_occupation[key]))
+        else:
+            break
+
+    #print(res)
+    return res
+
+
+def find_info_about_occupation(occupation):
+    connection = sqlite3.connect('my_db.db', check_same_thread=False)
+    cursor = connection.cursor()
+    cursor.execute(f'SELECT * FROM Operations WHERE occupation = "{occupation}"')
+    info = cursor.fetchall()
+    connection.commit()
+    connection.close()
+
+    if len(info) == 0:
+        return -1
+
+    time = 0
+    for reg in info:
+        time += reg[2]
+
+    return time

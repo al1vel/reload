@@ -31,6 +31,7 @@ class TimeTracker(QMainWindow):
         self.ui.buttonNextWeek.clicked.connect(self.open_next_week)
         self.ui.buttonLIST.clicked.connect(self.open_list_menu)
         self.ui.buttonSETTINGS.clicked.connect(self.open_settings_menu)
+        self.ui.pushButtonFIND.clicked.connect(self.find)
 
         self.timer = QtCore.QTimer(self)
         self.timer.setInterval(1000)
@@ -139,6 +140,7 @@ class TimeTracker(QMainWindow):
         self.model.removeRow(index)
         self.update_week_info()
         self.update_today_info()
+        self.update_top5()
         self.update_graph()
 
     def add_time(self):
@@ -159,6 +161,7 @@ class TimeTracker(QMainWindow):
         self.update_today_info()
         self.update_week_info()
         self.update_graph()
+        self.update_top5()
         self.window_default_add.close()
 
     def save_settings(self):
@@ -294,6 +297,7 @@ class TimeTracker(QMainWindow):
         self.update_today_info()
         self.update_week_info()
         self.update_graph()
+        self.update_top5()
         self.window_timer_add.close()
 
     def open_prev_day(self):
@@ -351,6 +355,7 @@ class TimeTracker(QMainWindow):
             s = f'{week_start}  {week_end}'
             self.ui.labelThisWeek.setText(s)
         self.update_week_info()
+        self.update_top5()
 
     def open_next_week(self):
         day_num = self.DISPLAYED_WEEK.weekday()
@@ -364,6 +369,30 @@ class TimeTracker(QMainWindow):
             s = f'{week_start}  {week_end}'
             self.ui.labelThisWeek.setText(s)
         self.update_week_info()
+        self.update_top5()
+
+    def update_top5(self):
+        data = smallDB.week_top5(self.DISPLAYED_WEEK)
+        headers = [self.ui.label1, self.ui.label2, self.ui.label3, self.ui.label4, self.ui.label5]
+        labels = [self.ui.labelPlace1,self.ui.labelPlace2,self.ui.labelPlace3,self.ui.labelPlace4,self.ui.labelPlace5]
+
+        cnt = len(data)
+        for i in range(5):
+            if i < cnt:
+                headers[i].setText(f'{i + 1}.')
+                text = f'{data[i][0][:18]}. — {data[i][1] // 60}:{data[i][1] % 60}h'
+                labels[i].setText(text)
+            else:
+                headers[i].setText("")
+                labels[i].setText("")
+
+    def find(self):
+        time = smallDB.find_info_about_occupation(self.ui.findLineEdit.text())
+        if time == -1:
+            self.ui.labelTimedata.setText("Not found")
+        else:
+            self.ui.labelTimedata.setText(f'{time // 60} h {time % 60} min')
+
 
 
 if __name__ == "__main__":
@@ -376,4 +405,5 @@ if __name__ == "__main__":
     window.update_today_info()
     window.update_week_info()
     window.update_graph()
+    window.update_top5()
     sys.exit(app.exec_())
